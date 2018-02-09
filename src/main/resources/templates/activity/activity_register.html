@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/patternLayout'">
+<head></head>
+
+<body class="skin-blue">
+	<div class="wrapper">
+		<section class="content" layout:fragment="content">
+			<th:block th:include="fragments/MensageSuccess"></th:block>
+			<form th:object="${activity}" method="post" th:action="${activity.new} ? @{/activity/register}:
+			 @{/activity/{id}(id= ${activity.id})}">
+			 	<th:block th:include="fragments/MensagesErrorValidation"></th:block>
+				<div class="row">
+					<div class="col-md-9">
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<h3 th:if="${activity.new}" class="box-title">New Activity</h3>
+								<h3 th:unless="${activity.new}" class="box-title" th:text="|Editing activity ${activity.name}|">New Activity</h3>
+							</div>
+							<!-- /.box-header -->
+
+							<div class="box-body">
+
+									<!-- input states -->
+
+								<div class="form-group /has-success col-sm-12" th:classappend="${#fields.hasErrors('name')} ? has-error">
+
+									<label class="control-label" for="inputSuccess">
+									<i class="fa fa-dribbble"></i> Activity name:</label> 
+									<input type="text" th:field="*{name}"
+										class="form-control" id="inputSuccess" placeholder="Football" />
+								</div>
+
+							</div>
+							<!-- /.box-body -->
+							<div class="box-footer">
+								<div class="pull-right">
+									<a th:href=@{/activity/register} class="btn btn-default">
+										<i th:if="${activity.new}" class="fa fa-eraser"></i> Clean
+									</a>
+									<button type="submit" class="btn btn-primary">
+										<i class="fa fa-save"></i> Save
+									</button>
+								</div>
+								<a th:href="@{/club/dashboard}" class="btn btn-default">
+									<i class="fa fa-times"></i> Close
+								</a>
+							</div>
+							<!-- /.box-footer -->
+						</div>
+						<!-- /. box -->
+					</div>
+					<div class="col-md-3">
+						
+					</div>
+				</div>
+			</form>
+		<div th:replace="group_level/add_group_level_modal :: modal"></div>
+		</section>
+	</div>
+</body>
+
+</html>

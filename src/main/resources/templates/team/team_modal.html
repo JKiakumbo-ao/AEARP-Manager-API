@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div class="modal fade" id="modalCadastroRapidoEstilo" tabindex="-1" role="dialog"  th:fragment="modal">
+		<div class="modal-dialog  ">
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<h4 class="modal-title">Group Level</h4>
+				</div>
+
+				<div class="modal-body box box-warning">
+					<form action="#" method="post">
+						<div class="box-header">
+							<h3 class="box-title"></h3>
+						</div>
+						<!-- /.box-header -->
+						<div class="row">
+							<div class="box-body col-sm-12">
+
+								<!-- input states -->
+
+								<div class="form-group /has-success col-md-4">
+
+									<label class="control-label" for="inputSuccess"><i
+										class="fa fa-user"></i> Name:</label> <input type="text" 
+										class="form-control" id="inputSuccess" placeholder="João" />
+								</div>
+
+								<div class="form-group /has-error col-md-4">
+									<label class="control-label" for="inputWarning"><i
+										class="fa fa-male"></i> Age from:</label> <input type="text"
+										 class="form-control" id="inputWarning"
+										placeholder="Kiakumbo" />
+								</div>
+
+								<div class="form-group col-md-4">
+									<label class="control-label" for="inputError"><i
+										class="fa fa-male"></i> Age to:</label> <input type="text"
+										 class="form-control" id="inputError"
+										placeholder="male" />
+								</div>
+
+								<div class="form-group col-sm-6">
+									<label class="control-label" for="inputSuccess"><i
+										class="fa fa-map-marker"></i> Add athletes:</label> <input type="text"
+										 class="form-control" id="inputSuccess"
+										placeholder="Angolan" />
+								</div>
+
+								<div class="form-group col-sm-6">
+									<label class="control-label" for="inputWarning"><i
+										class="fa fa-users"></i> Staff:</label>
+									<div class="sg-field-action">
+										<select id="estilo" class="form-control">
+											<option value="">Select Staff</option>
+											<option value="1">U-19</option>
+											<option value="2">Senior</option>
+										</select>
+
+										<div class="sg-field-action__icon">
+											<a href="#" data-toggle="modal"
+												data-target="#modalCadastroRapidoEstilo"> <i
+												class="glyphicon  glyphicon-plus-sign  sg-glyphicon-large"></i>
+											</a>
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+				</form>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default pull-left"
+							data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save
+							changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

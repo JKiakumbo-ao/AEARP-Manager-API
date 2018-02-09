@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	layout:decorator="'layout/patternLayout'">
+	
+<head></head>
+
+<body class="skin-blue">
+	<div class="wrapper">
+		<section class="content" layout:fragment="content">
+			<th:block th:include="fragments/MensageSuccess"></th:block>
+			<form th:object="${inviteToGame}" method="post" th:action="@{/invite/register}">
+			 	<th:block th:include="fragments/MensagesErrorValidation"></th:block>
+				<div class="row">
+					<div class="col-sm-5">
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<h3 class="box-title">Invite</h3>
+							</div>
+							<!-- /.box-header -->	
+								<div class="box-body">
+										<div class="row">
+											<div class="form-group /has-success col-sm-12" th:classappend="${#fields.hasErrors('opponent')} ? has-error">
+													
+													<input type="hidden" th:field="*{team}"/>
+													
+													<label class="control-label" for="inputSuccess">
+													<i class="fa fa-dribbble"></i> Opponent:</label> 
+													<input type="text" th:field="*{opponent}"
+														class="form-control" id="inputSuccess" placeholder="Opponent" />
+											</div>
+
+											<!-- radio -->
+											<th:block th:each="gameType : ${gameTypes}" th:classappend="${#fields.hasErrors('opponent')} ? has-error">
+								                  <div class="form-group col-sm-6">
+								                  	<input th:id="|id_${gameType}|" type="radio" th:field="*{game}" th:value="${gameType}"  class="minimal"/>
+								                    <label th:for="|id_${tgameType}|" th:text="${gameType.description}">
+								                      
+								                    </label>
+								                  </div>
+							                 </th:block>
+							                 <div class="form-group /has-success col-sm-9" th:classappend="${#fields.hasErrors('meetingPoint')} ? has-error">
+				
+													<label class="control-label" for="inputSuccess">
+													<i class="fa fa-dribbble"></i> Meeting Point:</label> 
+													<input type="text" th:field="*{meetingPoint}"
+														class="form-control" id="inputSuccess" placeholder="Meeting point" />
+											</div>
+											
+											<div class="bootstrap-timepicker col-sm-3" th:classappend="${#fields.hasErrors('meetingTime')} ? has-error">
+									                <div class="form-group">
+									                 	<label>Meeting time:</label>
+									                    	<div class="input-group">
+									                     	<input type="text" class="form-control timepicker" th:field="*{meetingTime}"/>
+									                     	<div class="input-group-addon">
+									                        		 <i class="fa fa-clock-o"></i>
+									                     	</div>
+									                    </div><!-- /.input group -->
+									               </div><!-- /.form group -->
+									      </div>
+									      <div class="form-group /has-success col-sm-12" th:classappend="${#fields.hasErrors('address')} ? has-error">
+				
+													<label class="control-label" for="inputSuccess">
+													<i class="fa fa-dribbble"></i> Address:</label> 
+													<input type="text" th:field="*{address}"
+														class="form-control" id="inputSuccess" placeholder="Address" />
+											</div>
+											
+												<div class="form-group col-sm-12" th:classappend="${#fields.hasErrors('registrants')} ? has-error">
+													<label class="control-label" for="inputWarning"><i
+																		class="fa fa-group"></i>Registrants:</label>
+													<div class="sg-field-action" >
+														<select id="estilo" class="form-control js-example-basic-multiple" multiple="multiple" th:field="*{registrants}">
+																		<option th:each="registrant : ${registrants}" 
+																		th:value="${registrant}" th:text="|${registrant.name} ${registrant.surname}|">U-19</option>
+																				
+														</select>
+									
+													</div>
+												</div>
+											
+										</div>
+									</div>
+								<!-- /.box-body -->
+								<div class="box-footer">
+									<div class="pull-right">
+										<a th:href=@{/gameday/register} class="btn btn-default">
+											<i class="fa fa-eraser"></i> Clean
+										</a>
+										<button type="submit" class="btn btn-primary">
+											<i class="fa fa-save"></i> Save
+										</button>
+									</div>
+									<a th:href="@{/club/dashboard}" class="btn btn-default">
+										<i class="fa fa-times"></i> Close
+									</a>
+								</div>
+								
+						</div>
+						<!-- /. box -->
+					</div>
+					<div class="col-md-7">
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<h3 class="box-title">Players proposed for this match</h3>
+							</div>
+							<div class="box-body">
+								<div class="row">
+										<div class="col-md-4">
+							              <!-- Primary box -->
+							              <div class="box box-solid box-primary">
+							                <div class="box-header">
+							                  <h3 class="box-title">GK (Goalkeeper)</h3>
+							                  <div class="box-tools pull-right">
+							                    <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+							                  </div>
+							                </div>
+							                <div class="box-body">
+							                    <div class="box-body no-padding">
+								                  <table class="table table-condensed">
+								                    <tr>
+								                      <th style="width: 10px">#</th>
+								                      <th>Name</th>
+								                      <th class="pull-right">Skills</th>
+								                    </tr>
+								                    <tr>
+								                      <td>1.</td>
+								                      <td>Joao Ricardo</td>
+								                     
+								                      <td><span class="badge bg-green pull-right">91%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>2.</td>
+								                      <td>Sebastiao Lama</td>
+								                      <td><span class="badge bg-green pull-right">84%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>3.</td>
+								                      <td>Gelson Manuel</td>
+								                     
+								                      <td><span class="badge bg-green pull-right">80%</span></td>
+								                    </tr>
+								                  </table>
+								                </div><!-- /.box-body -->
+							                </div><!-- /.box-body -->
+							              </div><!-- /.box -->
+							            </div><!-- /.col -->
+										<div class="col-md-4">
+							              <!-- Primary box -->
+							              <div class="box box-solid box-primary">
+							                <div class="box-header">
+							                  <h3 class="box-title">SW (Sweeper)</h3>
+							                  <div class="box-tools pull-right">
+							                    <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+							                  </div>
+							                </div>
+							                <div class="box-body">
+							                   <div class="box-body no-padding">
+								                  <table class="table table-condensed">
+								                    <tr>
+								                      <th style="width: 10px">#</th>
+								                      <th>Name</th>
+								                      <th class="pull-right">Skills</th>
+								                    </tr>
+								                    <tr>
+								                      <td>1.</td>
+								                      <td>Samuel Etoo</td>
+								                     
+								                      <td><span class="badge bg-green pull-right">90%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>2.</td>
+								                      <td>Bakari Avu</td>
+								                      <td><span class="badge bg-green pull-right">88%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>3.</td>
+								                      <td>Dawid Milk</td>
+								                     
+								                      <td><span class="badge bg-green pull-right">82%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>4.</td>
+								                      <td>Love Kabungula</td>
+								                      <td><span class="badge bg-green pull-right">79%</span></td>
+								                    </tr>
+								                  </table>
+								                </div><!-- /.box-body -->
+							                </div><!-- /.box-body -->
+							              </div><!-- /.box -->
+							            </div><!-- /.col -->
+										<div class="col-md-4">
+						              <!-- Primary box -->
+						              <div class="box box-solid box-primary">
+						                <div class="box-header">
+						                  <h3 class="box-title">CB (Centre Back)</h3>
+						                  <div class="box-tools pull-right">
+						                    <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+						                  </div>
+						                </div>
+						                <div class="box-body">
+						                  <div class="box-body no-padding">
+								                  <table class="table table-condensed">
+								                    <tr>
+								                      <th style="width: 10px">#</th>
+								                      <th>Name</th>
+								                      <th class="pull-right">Skills</th>
+								                    </tr>
+								                    <tr>
+								                      <td>1.</td>
+								                      <td>Manuel Chara</td>
+								                     
+								                      <td><span class="badge bg-green pull-right">83%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>2.</td>
+								                      <td>Kobe Mik</td>
+								                      <td><span class="badge bg-green pull-right">77%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>3.</td>
+								                      <td>Asamo Keita</td>
+								                     
+								                      <td><span class="badge bg-green pull-right">73%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>4.</td>
+								                      <td>Carlos Kali</td>
+								                      <td><span class="badge bg-green pull-right">71%</span></td>
+								                    </tr>
+								                  </table>
+								                </div><!-- /.box-body -->
+						                </div><!-- /.box-body -->
+						              </div><!-- /.box -->
+						            </div><!-- /.col -->	
+								</div>
+								
+								<div class="row">
+										<div class="col-md-4">
+							              <!-- Primary box -->
+							              <div class="box box-solid box-primary">
+							                <div class="box-header">
+							                  <h3 class="box-title">LB (Left Back)</h3>
+							                  <div class="box-tools pull-right">
+							                    <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+							                  </div>
+							                </div>
+							                <div class="box-body">
+							                   <div class="box-body no-padding">
+								                 <table class="table table-condensed">
+								                    <tr>
+								                      <th style="width: 10px">#</th>
+								                      <th>Name</th>
+								                      <th class="pull-right">Skills</th>
+								                    </tr>
+								                    <tr>
+								                      <td>1.</td>
+								                      <td>Alberto Meda</td>
+								                     
+								                      <td><span class="badge bg-green pull-right">61%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>2.</td>
+								                      <td>Roberto Paizo</td>
+								                      <td><span class="badge bg-green pull-right">60%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>3.</td>
+								                      <td>Mario Domingos</td>
+								                     
+								                      <td><span class="badge bg-green pull-right">58%</span></td>
+								                    </tr>
+								                  </table>
+								                </div><!-- /.box-body -->
+							                </div><!-- /.box-body -->
+							              </div><!-- /.box -->
+							            </div><!-- /.col -->
+										<div class="col-md-4">
+							              <!-- Primary box -->
+							              <div class="box box-solid box-primary">
+							                <div class="box-header">
+							                  <h3 class="box-title">RB (Rigth Back)</h3>
+							                  <div class="box-tools pull-right">
+							                    <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+							                  </div>
+							                </div>
+							                <div class="box-body">
+							                   <div class="box-body no-padding">
+								                 <table class="table table-condensed">
+								                    <tr>
+								                      <th style="width: 10px">#</th>
+								                      <th>Name</th>
+								                      <th class="pull-right">Skills</th>
+								                    </tr>
+								                    <tr>
+								                      <td>1.</td>
+								                      <td>Robert Jackson</td>
+								                     
+								                      <td><span class="badge bg-green pull-right">72%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>2.</td>
+								                      <td>Mateuz Kowalski</td>
+								                      <td><span class="badge bg-green pull-right">65%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>3.</td>
+								                      <td>Maciek Miłowski</td>
+								                     
+								                      <td><span class="badge bg-green pull-right">60%</span></td>
+								                    </tr>
+								                    
+								                  </table>
+								                </div><!-- /.box-body -->
+							                </div><!-- /.box-body -->
+							              </div><!-- /.box -->
+							            </div><!-- /.col -->
+										<div class="col-md-4">
+						              <!-- Primary box -->
+						              <div class="box box-solid box-primary">
+						                <div class="box-header">
+						                  <h3 class="box-title">CM (Centre Midfield)</h3>
+						                  <div class="box-tools pull-right">
+						                    <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+						                  </div>
+						                </div>
+						                <div class="box-body">
+						                   <div class="box-body no-padding">
+								                  <table class="table table-condensed">
+								                    <tr>
+								                      <th style="width: 10px">#</th>
+								                      <th>Name</th>
+								                      <th class="pull-right">Skills</th>
+								                    </tr>
+								                    <tr>
+								                      <td>1.</td>
+								                      <td>Job dos Santos</td>
+								                     
+								                      <td><span class="badge bg-green pull-right">85%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>2.</td>
+								                      <td>David Huk</td>
+								                      <td><span class="badge bg-green pull-right">79%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>3.</td>
+								                      <td>Joao Antonio</td>
+								                     
+								                      <td><span class="badge bg-green pull-right">73%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>4.</td>
+								                      <td>Andre Rodriguez</td>
+								                      <td><span class="badge bg-green pull-right">70%</span></td>
+								                    </tr>
+								                  </table>
+								                </div><!-- /.box-body -->
+						                </div><!-- /.box-body -->
+						              </div><!-- /.box -->
+						            </div><!-- /.col -->	
+								</div>
+								
+								<div class="row">
+										<div class="col-md-4">
+							              <!-- Primary box -->
+							              <div class="box box-solid box-primary">
+							                <div class="box-header">
+							                  <h3 class="box-title">LM (Left Midfield)</h3>
+							                  <div class="box-tools pull-right">
+							                    <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+							                  </div>
+							                </div>
+							                <div class="box-body">
+							                   <div class="box-body no-padding">
+								                 <table class="table table-condensed">
+								                    <tr>
+								                      <th style="width: 10px">#</th>
+								                      <th>Name</th>
+								                      <th class="pull-right">Skills</th>
+								                    </tr>
+								                    <tr>
+								                      <td>1.</td>
+								                      <td>Robert Jajack</td>
+								                     
+								                      <td><span class="badge bg-green pull-right">75%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>2.</td>
+								                      <td>Job dos Santos</td>
+								                      <td><span class="badge bg-green pull-right">70%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>3.</td>
+								                      <td>Amaro Miguel</td>
+								                     
+								                      <td><span class="badge bg-green pull-right">60%</span></td>
+								                    </tr>
+								                  </table>
+								                </div><!-- /.box-body -->
+							                </div><!-- /.box-body -->
+							              </div><!-- /.box -->
+							            </div><!-- /.col -->
+										<div class="col-md-4">
+							              <!-- Primary box -->
+							              <div class="box box-solid box-primary">
+							                <div class="box-header">
+							                  <h3 class="box-title">RM (Right Midfield)</h3>
+							                  <div class="box-tools pull-right">
+							                    <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+							                  </div>
+							                </div>
+							                <div class="box-body">
+							                   <div class="box-body no-padding">
+								                  <table class="table table-condensed">
+								                    <tr>
+								                      <th style="width: 10px">#</th>
+								                      <th>Name</th>
+								                      <th class="pull-right">Skills</th>
+								                    </tr>
+								                    
+								                    <tr>
+								                      <td>1.</td>
+								                      <td>Jan Nowak</td>
+								                      <td><span class="badge bg-green pull-right">90%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>2.</td>
+								                      <td>Joao Ricardo</td>
+								                     
+								                      <td><span class="badge bg-green pull-right">72%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>3.</td>
+								                      <td>Mario Andre</td>
+								                      <td><span class="badge bg-green pull-right">65,3%</span></td>
+								                    </tr>
+								                  </table>
+								                </div><!-- /.box-body -->
+							                </div><!-- /.box-body -->
+							              </div><!-- /.box -->
+							            </div><!-- /.col -->
+										<div class="col-md-4">
+						              <!-- Primary box -->
+						              <div class="box box-solid box-primary">
+						                <div class="box-header">
+						                  <h3 class="box-title">ST (Striker)</h3>
+						                  <div class="box-tools pull-right">
+						                    <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+						                  </div>
+						                </div>
+						                <div class="box-body">
+						                  <div class="box-body no-padding">
+								                 <table class="table table-condensed">
+								                    <tr>
+								                      <th style="width: 10px">#</th>
+								                      <th>Name</th>
+								                      <th class="pull-right">Skills</th>
+								                    </tr>
+								                    <tr>
+								                      <td>1.</td>
+								                      <td>Micheal Mik</td>
+								                     
+								                      <td><span class="badge bg-green pull-right">82%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>2.</td>
+								                      <td>Bastos Andre</td>
+								                      <td><span class="badge bg-green pull-right">80%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>3.</td>
+								                      <td>Ary Papel</td>
+								                     
+								                      <td><span class="badge bg-green pull-right">67%</span></td>
+								                    </tr>
+								                    <tr>
+								                      <td>4.</td>
+								                      <td>Mario Gonsalez</td>
+								                      <td><span class="badge bg-green pull-right">64%</span></td>
+								                    </tr>
+								                  </table>
+								                </div><!-- /.box-body -->
+						                </div><!-- /.box-body -->
+						              </div><!-- /.box -->
+						            </div><!-- /.col -->	
+								</div>
+								 <a th:href="@{/invite/field}" class="btn btn-block btn-social btn-dropbox">
+				                    <i class="fa fa-users"></i> ZAPROPONOWANE SKŁAD
+				                  </a>
+							</div>
+							<!-- /.box-body -->
+							
+						</div>
+						<!-- /. box -->
+					</div>
+					
+				</div>
+			</form>
+		</section>
+
+	</div>
+</body>
+
+</html>

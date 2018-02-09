@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	layout:decorator="'layout/patternLayout'">
+	
+<head></head>
+
+<body class="skin-blue">
+	<div class="wrapper">
+		<section class="content" layout:fragment="content">
+			<th:block th:include="fragments/MensageSuccess"></th:block>
+			<form th:object="${teamEvent}" method="post" th:action="@{/team_event/register}">
+			 	<th:block th:include="fragments/MensagesErrorValidation"></th:block>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<h3 class="box-title">Team Event</h3>
+							</div>
+							<!-- /.box-header -->	
+								<div class="box-body">
+										<div class="row">
+											<div class="form-group col-sm-12" th:classappend="${#fields.hasErrors('eventType')} ? has-error">
+													<label class="control-label" for="inputSuccess"><i
+														class="fa fa-flag"></i> Visibility:</label> <select class="form-control"
+														id="inputSuccess" th:field="*{eventType}">
+														<option value="" label="Select a country … "
+															selected="selected">Select visibility …       </option>
+														<option th:each="eventType : ${eventTypes}"
+															th:value="${eventType}" th:text="${eventType.description}">Site</option>
+													</select>
+											</div>
+											
+												<div class="form-group  col-sm-4" th:classappend="${#fields.hasErrors('date')} ? has-error">
+												<label class="control-label" for="inputSuccess"><i
+													class="fa fa-calendar"></i> Date:</label>
+												<div class="input-group date form_date "
+													data-date-format="dd-mm-yyyy" data-link-field="dtp_input1">
+													<span class="input-group-addon"><span
+														class="glyphicon glyphicon-th"></span> </span> <input
+														class="form-control" size="16" type="text"
+														th:field="*{date}" placeholder="09-11-2018" />
+														
+												</div>
+											</div> 
+											
+												<!-- time Picker -->
+									                  <div class="bootstrap-timepicker col-sm-4" th:classappend="${#fields.hasErrors('start')} ? has-error">
+									                    <div class="form-group">
+									                      <label>Start:</label>
+									                      <div class="input-group">
+									                        <input type="text" class="form-control timepicker" th:field="*{start}"/>
+									                        <div class="input-group-addon">
+									                          <i class="fa fa-clock-o"></i>
+									                        </div>
+									                      </div><!-- /.input group -->
+									                    </div><!-- /.form group -->
+									                  </div>
+									                  
+									                  <!-- time Picker -->
+									                  <div class="bootstrap-timepicker col-sm-4" th:classappend="${#fields.hasErrors('end')} ? has-error">
+									                    <div class="form-group">
+									                      <label>End:</label>
+									                      <div class="input-group">
+									                        <input type="text" class="form-control timepicker" th:field="*{end}"/>
+									                        <div class="input-group-addon">
+									                          <i class="fa fa-clock-o"></i>
+									                        </div>
+									                      </div><!-- /.input group -->
+									                    </div><!-- /.form group -->
+									                  </div>
+									                  
+									        <div class="form-group col-sm-12" th:classappend="${#fields.hasErrors('eventType')} ? has-error">
+													<label class="control-label" for="inputSuccess"><i
+														class="fa fa-flag"></i> Event type:</label> <select id="estilo" class="form-control js-example-basic-multiple" 
+															multiple="multiple" th:field="*{eventType}">
+														<option value="" label="Select a country … "
+															selected="selected">Select visibility …       </option>
+														<option th:each="team : ${teams}"
+															th:value="${team}" th:text="${team.name}">Algeria</option>
+													</select>
+											</div>
+											
+											<div class="form-group col-sm-12" th:classappend="${#fields.hasErrors('site')} ? has-error">
+													<label class="control-label" for="inputSuccess"><i
+														class="fa fa-flag"></i> Visibility:</label> <select class="form-control"
+														id="inputSuccess" th:field="*{site}">
+														<option value="" label="Select a country … "
+															selected="selected">Select visibility …       </option>
+														<option th:each="team : ${teams}"
+															th:value="${team}" th:text="${team.name}">Site</option>
+													</select>
+											</div>
+												
+										</div>
+									</div>
+								<!-- /.box-body -->
+								<div class="box-footer">
+									<div class="pull-right">
+										<a th:href=@{/gameday/register} class="btn btn-default">
+											<i class="fa fa-eraser"></i> Clean
+										</a>
+										<button type="submit" class="btn btn-primary">
+											<i class="fa fa-save"></i> Save
+										</button>
+									</div>
+									<a th:href="@{/club/dashboard}" class="btn btn-default">
+										<i class="fa fa-times"></i> Close
+									</a>
+								</div>
+								
+						</div>
+						<!-- /. box -->
+					</div>
+					<div class="col-md-6">
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<h3 class="box-title">Match result</h3>
+							</div>
+							<div class="box-body">
+								<div class="row">
+										<div class="form-group col-sm-12" th:classappend="${#fields.hasErrors('registrants')} ? has-error">
+										<input type = "hidden" th:field="*{id}">
+										<label class="control-label" for="inputWarning"><i
+															class="fa fa-group"></i>Registrants:</label>
+										<div class="sg-field-action" >
+											<select id="estilo" class="form-control js-example-basic-multiple" multiple="multiple" th:field="*{registrants}">
+															<option th:each="registrant : ${registrants}" 
+															th:value="${registrant}" th:text="${registrant.name}">U-19</option>
+																	
+											</select>
+						
+										</div>
+									</div>
+										
+											
+								</div>
+			
+							</div>
+							<!-- /.box-body -->
+							
+						</div>
+						<!-- /. box -->
+					</div>
+					
+				</div>
+			</form>
+		</section>
+
+	</div>
+</body>
+
+</html>

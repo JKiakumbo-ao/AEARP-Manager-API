@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/patternLayout'">
+<head></head>
+
+<body class="skin-blue">
+	<div class="wrapper">
+		<section layout:fragment="content">
+			<!-- Right side column. Contains the navbar and content of the page -->
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<h1>
+					Schedule <small>Control panel</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+					<li class="active">Schedule</li>
+				</ol>
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+				
+					<div class="row">
+						<div class="col-md-12">
+							<div class="box box-primary">
+								<div class="box-body no-padding">
+									<!-- THE CALENDAR -->
+									<div id='div-agenda-events'></div>
+	
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /. box -->
+						</div>
+						<!-- /.col -->
+					</div>
+						<!-- /.row -->
+			</section>
+			<!-- /.content -->
+		</section>
+	</div>
+	
+</body>
+
+</html>

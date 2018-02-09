@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/patternLayout'">
+<head></head>
+
+<body class="skin-blue">
+	<div class="wrapper">
+		<section class="content" layout:fragment="content">
+			<th:block th:include="fragments/MensageSuccess"></th:block>
+			<form th:object="${exercise}" method="post" th:action="@{/exercise/register}">
+			 	<th:block th:include="fragments/MensagesErrorValidation"></th:block>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<h3 class="box-title">New exercise</h3>
+							</div>
+							<!-- /.box-header -->	
+								<div class="box-body">
+										<div class="row">
+											<div class="form-group /has-success col-sm-12" th:classappend="${#fields.hasErrors('name')} ? has-error">
+				
+													<label class="control-label" for="inputSuccess">
+													<i class="fa fa-dribbble"></i> Exercise name:</label> 
+													<input type="text" th:field="*{name}"
+														class="form-control" id="inputSuccess" placeholder="type name" />
+											</div>
+											<div class="form-group col-sm-12" th:classappend="${#fields.hasErrors('visibility')} ? has-error">
+													<label class="control-label" for="inputSuccess"><i
+														class="fa fa-flag"></i> Visibility:</label> <select class="form-control"
+														id="inputSuccess" th:field="*{visibility}">
+														<option value="" label="Select a country … "
+															selected="selected">Select visibility …       </option>
+														<option th:each="visibility : ${visibilities}"
+															th:value="${visibility}" th:text="${visibility.description}">Algeria</option>
+													</select>
+											</div>
+											<div class="form-group  col-sm-12">
+												<div class="js-container-person-photo" th:attr="data-url-photos=@{/photos}">
+													<div id="upload-drop" class="bw-upload">
+														<i class="glyphicon  glyphicon-cloud-upload"></i> <span>drop
+															a photo here or </span> <a class="bw-upload-form-file">select
+															one <input id="upload-select" type="file"
+															accept=".jpg,.jpeg,.png" /> <input type="hidden"
+															th:field="*{photos}" /> <input type="hidden"
+															th:field="*{contentType}" />
+															<input type="hidden" th:field="*{newPhoto}" />
+															
+														</a>
+													</div>
+												</div>
+											</div>
+												
+										</div>
+									</div>
+									
+								<!-- /.box-body -->
+								
+						</div>
+						<!-- /. box -->
+					</div>
+					<div class="col-md-6">
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<h3 class="box-title">Photo</h3>
+							</div>
+							<div class="box-body">
+								<div class="row">
+										<div class="form-group has-error col-sm-4">
+												<label class="control-label" for="inputSuccess">
+												<i class="fa "></i> % of Fitness</label> 
+												<div class="number-input">
+												  <button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+												  <input class="quantity" min="0" max="100" step="5" th:field="*{fitness}" value="0" type="number">
+												  <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+												</div>
+												
+										</div>
+										<div class="form-group has-success col-sm-4 " >
+						
+												<label class="control-label" for="inputSuccess">
+													<i class="fa "></i> % of Technique</label> 
+												 <div class="number-input">
+												  	<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+												  	<input class="quantity" min="0" max="100" step="5" th:field="*{technique}" value="0" type="number">
+												  	<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+												</div>
+										</div>
+										<div class="form-group has-warning col-sm-4" >
+						
+												<label class="control-label" for="inputSuccess">
+													<i class="fa "></i> % of Tactics</label> 
+												  <div class="number-input">
+													  <button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													  <input class="quantity" min="0" max="100" step="5" th:field="*{tactics}" value="0" type="number">
+													  <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+													</div>
+										</div>
+											
+								</div>
+								<div class="row">
+									<div class="form-group col-sm-12" th:classappend="${#fields.hasErrors('mainFocus')} ? has-error">
+											<input type = "hidden" th:field="*{id}">
+											<label class="control-label" for="inputWarning"><i
+															class="fa fa-dot-circle-o"></i> Main focus:</label>
+											<div class="sg-field-action" >
+												<select id="estilo" class="form-control" th:field="*{mainFocus}">
+														<option th:each="trainingType : ${trainingTypes}" 
+															th:value="${trainingType}" th:text="${trainingType.description}">U-19</option>
+																	
+												</select>
+						
+											</div>
+									</div>
+									<div class="form-group col-sm-12" th:classappend="${#fields.hasErrors('teams')} ? has-error">
+											<input type = "hidden" th:field="*{id}">
+											<label class="control-label" for="inputWarning"><i
+															class="fa fa-users"></i> Age:</label>
+											<div class="sg-field-action" >
+												<select id="estilo" class="form-control js-example-basic-multiple" multiple="multiple" th:field="*{teams}">
+														<option th:each="team : ${teams}" 
+															th:value="${team.id}" th:text="${team.name}">U-19</option>
+																	
+												</select>
+						
+											</div>
+									</div>
+									<div class="form-group col-sm-12" th:classappend="${#fields.hasErrors('phase')} ? has-error">
+											<input type = "hidden" th:field="*{id}">
+											<label class="control-label" for="inputWarning"><i
+															class="fa "></i> Phase:</label>
+											<div class="sg-field-action" >
+												<select id="estilo" class="form-control js-example-basic-multiple" multiple="multiple" th:field="*{phase}">
+														<option th:each="phase : ${phases}" 
+															th:value="${phase}" th:text="${phase.description}">U-19</option>
+																	
+												</select>
+						
+											</div>
+									</div>
+									<div class="form-group col-sm-12" th:classappend="${#fields.hasErrors('groupSize')} ? has-error">
+											<input type = "hidden" th:field="*{id}">
+											<label class="control-label" for="inputWarning"><i
+															class="fa fa-sort-numeric-asc"></i> Group size:</label>
+											<div class="sg-field-action" >
+												<select id="estilo" class="form-control" th:field="*{groupSize}">
+														<option th:each="groupSize : ${groupSizes}" 
+															th:value="${groupSize}" th:text="${groupSize.description}">U-19</option>
+																	
+												</select>
+						
+											</div>
+									</div>
+									<div class="form-group col-sm-12" th:classappend="${#fields.hasErrors('goalieKeeper')} ? has-error">
+											<input type = "hidden" th:field="*{id}">
+											<label class="control-label" for="inputWarning"><i
+															class="fa "></i>Goalkeeper:</label>
+											<div class="sg-field-action" >
+												<select id="estilo" class="form-control js-example-basic-multiple" multiple="multiple" th:field="*{goalieKeeper}">
+														<option th:each="goalkeeper : ${goalkeepers}" 
+															th:value="${goalkeeper}" th:text="${goalkeeper.description}">U-19</option>
+																	
+												</select>
+						
+											</div>
+									</div>
+									<div class="form-group col-sm-12" th:classappend="${#fields.hasErrors('moreCategories')} ? has-error">
+											<input type = "hidden" th:field="*{id}">
+											<label class="control-label" for="inputWarning"><i
+															class="fa fa-sitemap"></i> More Categories:</label>
+											<div class="sg-field-action" >
+												<select id="estilo" class="form-control js-example-basic-multiple" multiple="multiple" th:field="*{moreCategories}">
+														<option th:each="trainingCategory : ${trainingCategories}" 
+															th:value="${trainingCategory}" th:text="${trainingCategory.description}">U-19</option>
+																	
+												</select>
+						
+											</div>
+									</div>
+									
+									
+									
+								</div>
+							</div>
+							<!-- /.box-body -->
+							<div class="box-footer">
+									<div class="pull-right">
+										<a th:href=@{/exercise/register} class="btn btn-default">
+											<i class="fa fa-eraser"></i> Clean
+										</a>
+										<button type="submit" class="btn btn-primary">
+											<i class="fa fa-save"></i> Save
+										</button>
+									</div>
+									<a th:href="@{/club/dashboard}" class="btn btn-default">
+										<i class="fa fa-times"></i> Close
+									</a>
+								</div>
+						</div>
+						<!-- /. box -->
+					</div>
+					
+				</div>
+			</form>
+		</section>
+
+	</div>
+</body>
+
+</html>

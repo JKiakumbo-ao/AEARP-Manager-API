@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/patternLayout'">
+<head></head>
+
+
+<body class="skin-blue">
+	<div class="wrapper">
+		<section class="content" layout:fragment="content">
+		<th:block th:include="fragments/MensageSuccess"></th:block>
+			
+			<form th:object="${team}" method="post" th:action="${team.new} ? @{/team/register} : @{/team/{id}(id=${team.id})}">
+			
+				<th:block th:include="fragments/MensagesErrorValidation"></th:block>
+			
+				<div class="row">
+					<div class="col-md-9">
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<h3 th:if="${team.new}" class="box-title">New Team</h3>
+								<h3 th:unless="${team.new}" class="box-title" th:text="|New Team|">New group level</h3>
+							</div>
+							<!-- /.box-header -->
+
+							<div class="box-body">
+
+								<!-- input states -->
+								<div class="form-group col-sm-12">
+									<h2>
+										<i class="fa fa-info-circle"></i> Team information
+									</h2>
+								</div>
+								<div class="form-group /has-success col-sm-12" th:classappend="${#fields.hasErrors('name')} ? has-error">
+									<input type="hidden" th:field="*{id}"/>
+									<label class="control-label" for="inputSuccess"><i
+										class="fa fa-users"></i> Team:</label> <input type="text" th:field="*{name}"
+										class="form-control" id="inputSuccess" placeholder="Junior" />
+								</div>
+
+								<div class="form-group col-sm-12" th:classappend="${#fields.hasErrors('players')} ? has-error">
+											<input type = "hidden" th:field="*{id}">
+											<label class="control-label" for="inputWarning"><i
+															class="fa fa-users"></i> Add players:</label>
+											<div class="sg-field-action" >
+												<select id="estilo" class="form-control js-example-basic-multiple" multiple="multiple" th:field="*{players}">
+														<option th:each="player : ${players}" 
+															th:value="${player.id}" th:text="${player.name}">U-19</option>
+												</select>
+						
+											</div>
+								</div>
+
+								<div class="form-group col-sm-12" th:classappend="${#fields.hasErrors('trainers')} ? has-error">
+											<input type = "hidden" th:field="*{id}">
+											<label class="control-label" for="inputWarning"><i
+															class="fa fa-users"></i> Add trainers:</label>
+											<div class="sg-field-action" >
+												<select id="estilo" class="form-control js-example-basic-multiple" multiple="multiple" th:field="*{trainers}">
+														<option th:each="trainer : ${trainers}" 
+															th:value="${trainer.id}" th:text="${trainer.description}">U-19</option>
+																	
+												</select>
+						
+											</div>
+									</div>
+									<div class="form-group col-sm-12" th:classappend="${#fields.hasErrors('coachs')} ? has-error">
+											<input type = "hidden" th:field="*{id}">
+											<label class="control-label" for="inputWarning"><i
+															class="fa fa-users"></i> Add coachs:</label>
+											<div class="sg-field-action" >
+												<select id="estilo" class="form-control js-example-basic-multiple" multiple="multiple" th:field="*{coachs}">
+														<option th:each="coach : ${coachs}" 
+															th:value="${coach.id}" th:text="${coach.name}">U-19</option>
+																	
+												</select>
+						
+											</div>
+									</div>
+								
+								<div class="form-group  col-sm-12" th:classappend="${#fields.hasErrors('members')} ? has-error">
+									<label class="control-label" for="inputSuccess"><i
+										class="fa fa-users"></i> Add members:</label>
+									<div class="sg-field-action">
+										<select id="estilo" class="form-control js-example-basic-multiple" multiple="multiple" th:field="*{members}">
+												<option th:each="member : ${members}" 
+													th:value="${member.id}" th:text="${member.name}">U-19</option>
+																	
+										</select>
+
+										<div class="sg-field-action__icon">
+											<a href="#" data-toggle="modal"
+												data-target="#addActivityModal"> <i
+												class="glyphicon  glyphicon-plus-sign  sg-glyphicon-large"></i>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /.box-body -->
+							<div class="box-footer">
+								<div class="pull-right">
+								
+									<a th:if=${team.new} th:href=@{/team/register} class="btn btn-default">
+										<i class="fa fa-eraser"></i> Clean
+									</a>
+									<button type="submit" class="btn btn-primary">
+											<i class="fa fa-save"></i> Save
+									</button>
+								</div>
+								<a th:href="@{/club/dashboard}" class="btn btn-default">
+									<i class="fa fa-times"></i> Close
+								</a>
+							</div>
+							<!-- /.box-footer -->
+						</div>
+						<!-- /. box -->
+					</div>
+					<div class="col-md-3"></div>
+				</div>
+			</form>
+			<div th:replace="technical_staff/add_technical_staff_modal :: modal"></div>
+		</section>
+
+	</div>
+</body>
+
+</html>

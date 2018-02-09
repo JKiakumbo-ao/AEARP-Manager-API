@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div class="modal fade" id="coachDetailModal" tabindex="-1"
+		role="dialog" th:fragment="coachModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<h3><i class="fa fa-info-circle"></i> Coach information</h3>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-5">
+							<div class="photo_in_details">
+							  	<img th:if="${coach.photo != ''}" th:src="@{/photos/} + ${coach.photo}"
+									class="img-circle sg-img-in-details"/>
+								<img th:unless="${coach.photo != ''}" src="../../dist/img/avatar5.png"
+									class="img-circle sg-img-in-details" alt="User Image"/><br/><br/>
+								<label th:text="${coach.name}+' '+${coach.surname}">
+									Alexander Pierce
+								</label>
+							</div>
+							<br/>
+							<label class="control-label" > Gender:</label> <span th:text="${coach.gender.description}"></span><br/>
+
+							<label class="control-label" > Nacionality:</label> <span th:text="${coach.nacionality}"></span><br/>
+
+							<label class="control-label" > Date of Born:</label> <span th:text="${coach.dateOfBorn}"></span><br/>
+							
+						</div>
+						<div class="col-sm-7">
+
+							<label class="control-label" > Document type:</label> <span th:text="${coach.documentType}"></span><br/>
+
+							<label class="control-label" > Document number:</label> <span th:text="${coach.documentNumber}"></span><br/>
+							
+							<label class="control-label" > Phone:</label> <span th:text="${coach.phoneNumber}"></span><br/>
+
+							<label class="control-label" > Cell phone:</label> <span th:text="${coach.cellPhoneNumber}"></span><br/>
+
+							<label class="control-label" > Email:</label> <span th:text="${coach.email}"></span><br/>
+
+
+							<label class="control-label" > Street:</label> <span th:text="${coach.street}"></span><br/>
+
+							<label class="control-label" > Number:</label> <span th:text="${coach.number}"></span><br/>
+
+							<label class="control-label" > Zip code:</label> <span th:text="${coach.zipCode}"></span><br/>
+
+							<label class="control-label" > city:</label> <span th:text="${coach.city}"></span><br/>
+
+							<label class="control-label" > Country:</label> <span th:text="${coach.country.countryName}"></span><br/>
+
+							<label class="control-label" > Contract end at:</label> <span th:text="${coach.contractEnd}"></span><br/>
+							
+							
+						</div>
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default pull-left"
+							data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

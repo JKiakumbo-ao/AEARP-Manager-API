@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div class="modal fade" id="activityDetailModal" tabindex="-1"
+		role="dialog" th:fragment="activityModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<h3><i class="fa fa-info-circle"></i> Activity information</h3>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-5">
+							<label class="control-label" > Activity name:</label> <span th:text="${activity.name}"></span><br/>
+
+							<label class="control-label" > Number of groups level:</label> <span th:text="${#lists.size(activity.groupsLevel)}"></span><br/>
+
+							<label class="control-label" > Number of athletes:</label> <span th:text="${#lists.size(activity.athletes)}"></span><br/>
+							
+						</div>
+						<div class="col-sm-7">
+							<label  class="control-label" >Groups level:</label>
+							<div  th:each ="groupLevel : ${groupsLevel}">
+								<span th:text="${groupLevel.name}"></span>
+							</div>
+						</div>
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default pull-left"
+							data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

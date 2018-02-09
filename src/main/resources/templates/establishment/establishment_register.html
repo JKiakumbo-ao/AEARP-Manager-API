@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/patternLayout'">
+<head></head>
+
+<body class="skin-blue">
+	<div class="wrapper">
+		<section class="content" layout:fragment="content">
+			<th:block th:include="fragments/MensageSuccess"></th:block>
+			<form th:object="${establishment}" method="post" th:action="${establishment.new} ? @{/establishment/register} : @{/establishment/{id}(id=${establishment.id})}">
+				<th:block th:include="fragments/MensagesErrorValidation"></th:block>
+				<div class="row">
+					<div class="col-md-9">
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<h3 class="box-title">New Establishment</h3>
+							</div>
+							<!-- /.box-header -->
+
+							<div class="box-body">
+
+								<!-- input states -->
+								
+								<div class="form-group /has-success col-sm-12" th:classappend="${#fields.hasErrors('name')} ? has-error">
+									<input type="hidden" th:field="*{id}"/>
+
+									<label class="control-label" for="inputSuccess"><i
+										class="fa fa-user"></i> Name:</label> <input type="text"
+										th:field="*{name}" class="form-control" id="inputSuccess"
+										placeholder="Hala tensowa" />
+								</div>
+
+
+								<div class="form-group col-sm-12">
+									<h2>
+										<i class="fa fa-home"></i> Adress
+									</h2>
+								</div>
+
+								<div class="form-group /has-success col-sm-6" th:classappend="${#fields.hasErrors('street')} ? has-error">
+
+									<label class="control-label" for="inputSuccess"><i
+										class="fa fa-road"></i> Street:</label> <input type="text"
+										th:field="*{street}" class="form-control" id="inputSuccess"
+										placeholder="Wittiga" />
+								</div>
+
+								<div class="form-group /has-error col-sm-6" th:classappend="${#fields.hasErrors('number')} ? has-error">
+									<label class="control-label" for="inputWarning"><i
+										class="fa fa-sort-numeric-asc"></i> Number:</label> <input type="text"
+										th:field="*{number}" class="form-control" id="inputWarning"
+										placeholder="4" />
+								</div>
+
+								<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('zipCode')} ? has-error">
+									<label class="control-label" for="inputError"><i
+										class="fa fa-archive"></i> Zip code:</label> <input type="text"
+										th:field="*{zipCode}" class="form-control" id="inputError"
+										placeholder="51-628" />
+								</div>
+
+								<div class="form-group col-sm-4" th:classappend="${#fields.hasErrors('city')} ? has-error">
+									<label class="control-label" for="inputSuccess"><i
+										class="fa fa-building-o"></i> city:</label> <input type="text"
+										th:field="*{city}" class="form-control" id="inputSuccess"
+										placeholder="Wroclaw" />
+								</div>
+
+								<div class="form-group col-sm-5" th:classappend="${#fields.hasErrors('country')} ? has-error">
+									<label class="control-label" for="inputSuccess"><i
+										class="fa fa-flag"></i> Country:</label> <select class="form-control"
+										id="inputSuccess" th:field="*{country}">
+										<option value="" label="Select a country … "
+											selected="selected">Select a country …       </option>
+										<option th:each="iso_3166 : ${ISO_3166}"
+											th:value="${iso_3166}" th:text="${iso_3166.countryName}">Algeria</option>
+									</select>
+								</div>
+
+							</div>
+							<!-- /.box-body -->
+							<div class="box-footer">
+								<div class="pull-right">
+									<button class="btn btn-default">
+										<i class="fa fa-eraser"></i> Clean
+									</button>
+									<button type="submit" class="btn btn-primary">
+										<i class="fa fa-save"></i> Save
+									</button>
+								</div>
+								<button class="btn btn-default">
+									<i class="fa fa-times"></i> Close
+								</button>
+							</div>
+							<!-- /.box-footer -->
+						</div>
+						<!-- /. box -->
+					</div>
+					<div class="col-md-3">
+						<div class="box box-solid">
+							<div class="box-header with-border">
+								<h3 class="box-title">Folders</h3>
+							</div>
+							<div class="box-body">
+								<img src="cinqueterre.jpg" class="img-rounded "
+									alt="Cinque Terre" width="150" height="150">
+							</div>
+							<!-- /.box-body -->
+						</div>
+						<!-- /. box -->
+					</div>
+				</div>
+			</form>
+
+			<div th:replace="group_level/add_group_level_modal :: modal"></div>
+			<div th:replace="activity/add_activity_modal :: modal"></div>
+		</section>
+
+	</div>
+</body>
+
+</html>

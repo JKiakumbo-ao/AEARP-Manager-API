@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div class="modal fade" id="technicalMembershipDetailModal" tabindex="-1"
+		role="dialog" th:fragment="technicalMembershipModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<h3><i class="fa fa-info-circle"></i> Coach information</h3>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-5">
+							<div class="photo_in_details">
+							  	<img th:if="${technicalMembership.photo != ''}" th:src="@{/photos/} + ${technicalMembership.photo}"
+									class="img-circle sg-img-in-details"/>
+								<img th:unless="${technicalMembership.photo != ''}" src="../../dist/img/avatar5.png"
+									class="img-circle sg-img-in-details" alt="User Image"/><br/><br/>
+								<label th:text="${technicalMembership.name}+' '+${technicalMembership.surname}">
+									Alexander Pierce
+								</label>
+							</div>
+							<br/>
+							<label class="control-label" > Position:</label> <span th:text="${technicalMembership.position}"></span><br/>
+							
+							<label class="control-label" > Gender:</label> <span th:text="${technicalMembership.gender.description}"></span><br/>
+
+							<label class="control-label" > Nacionality:</label> <span th:text="${technicalMembership.nacionality}"></span><br/>
+
+							<label class="control-label" > Date of Born:</label> <span th:text="${technicalMembership.dateOfBorn}"></span><br/>
+							
+						</div>
+						<div class="col-sm-7">
+
+							<label class="control-label" > Document type:</label> <span th:text="${technicalMembership.documentType}"></span><br/>
+
+							<label class="control-label" > Document number:</label> <span th:text="${technicalMembership.documentNumber}"></span><br/>
+							
+							<label class="control-label" > Phone:</label> <span th:text="${technicalMembership.phoneNumber}"></span><br/>
+
+							<label class="control-label" > Cell phone:</label> <span th:text="${technicalMembership.cellPhoneNumber}"></span><br/>
+
+							<label class="control-label" > Email:</label> <span th:text="${technicalMembership.email}"></span><br/>
+
+
+							<label class="control-label" > Street:</label> <span th:text="${technicalMembership.street}"></span><br/>
+
+							<label class="control-label" > Number:</label> <span th:text="${technicalMembership.number}"></span><br/>
+
+							<label class="control-label" > Zip code:</label> <span th:text="${technicalMembership.zipCode}"></span><br/>
+
+							<label class="control-label" > city:</label> <span th:text="${technicalMembership.city}"></span><br/>
+
+							<label class="control-label" > Country:</label> <span th:text="${technicalMembership.country.countryName}"></span><br/>
+							
+						</div>
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default pull-left"
+							data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/patternLayout}">
+<head></head>
+
+<body class="skin-blue">
+	<div class="content-wrapper">
+		<section class="content" layout:fragment="content">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<h1>
+					Data Tables <small>advanced tables</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+					<li><a href="#">Tables</a></li>
+					<li class="active">Data tables</li>
+				</ol>
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">Data Table With Full Features</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body table-responsive">
+								<table id="dataTable"
+									class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th>Photo</th>
+											<th>Name</th>
+											<th>Gender</th>
+											<th>Phone</th>
+											<th>Email</th>
+											<th>Nacionality</th>
+											<th>Options</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr th:each="coach : ${coaches}">
+
+											<td
+												th:onclick="'javascript:openCoachModal(\''+${coach.id}+'\');'"
+												title="click to see more details"><img
+												th:if="${coach.photo != ''}"
+												th:src="@{/photos/} + ${coach.photo}"
+												class="img-circle sg-img-in-table" /> <img
+												th:unless="${coach.photo != ''}"
+												src="../../dist/img/avatar5.png"
+												class="img-circle sg-img-in-table" alt="User Image" /></td>
+
+											<td th:text="${coach.name}+' '+${coach.surname}"
+												th:onclick="'javascript:openCoachModal(\''+${coach.id}+'\');'"
+												title="click to see more details"></td>
+
+											<td th:text="${coach.gender.description}"
+												th:onclick="'javascript:openCoachModal(\''+${coach.id}+'\');'"
+												title="click to see more details"></td>
+
+											<td th:text="${coach.phoneNumber}"
+												th:onclick="'javascript:openCoachModal(\''+${coach.id}+'\');'"
+												title="click to see more details"></td>
+
+											<td th:text="${coach.email}"
+												th:onclick="'javascript:openCoachModal(\''+${coach.id}+'\');'"
+												title="click to see more details"></td>
+
+											<td th:text="${coach.nacionality}"
+												th:onclick="'javascript:openCoachModal(\''+${coach.id}+'\');'"
+												title="click to see more details"></td>
+
+											<td>
+												<div class="pull-right">
+													<a th:href="@{/edit/coach/}+${coach.id}"
+														title="see more details"><i
+														class="glyphicon glyphicon-eye-open text-primary"></i></a> 
+														<a class="btn  btn-link  btn-xs  js-tooltip" title="Editar"
+														th:href="@{/coach/{id}(id=${coach.id})}"> <i
+														class="glyphicon glyphicon-edit text-success"></i>
+													</a>
+													<a class="btn  btn-link  btn-xs  js-tooltip  js-exclusao-btn" href="#"
+													th:attr="data-url=@{/coach/{id}(id=${coach.id})}, 
+													data-objeto=${coach.name}" title="Delete">
+														<i class="glyphicon glyphicon-trash text-danger"></i>
+													</a>
+												</div>
+											</td>
+
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<th>Photo</th>
+											<th>Name</th>
+											<th>Gender</th>
+											<th>Phone</th>
+											<th>Email</th>
+											<th>Nacionality</th>
+											<th>Options</th>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+							<!-- /.box-body -->
+						</div>
+						<!-- /.box -->
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+				<div id="coachModelHolder"></div>
+			</section>
+			<!-- /.content -->
+			<script type="text/javascript">
+				function openCoachModal(id) {
+					$.ajax({
+						url : "/coach/coach/" + id,
+			
+						success : function(data) {
+							ht = data;
+							$("#coachModelHolder").html(data);
+							$("#coachDetailModal").modal("show");
+						}
+					});
+			
+				}
+			</script>
+		</section>
+
+	</div>
+
+</body>
+
+</html>

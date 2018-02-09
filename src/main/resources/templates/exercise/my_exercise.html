@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/patternLayout'">
+<head></head>
+
+<body class="skin-blue">
+	<div class="wrapper">
+		<section class="content" layout:fragment="content">
+					<section class="content-header">
+						<h1>
+							Exercises <small>Control panel</small>
+						</h1>
+						<ol class="breadcrumb">
+							<li><a th:href="@{/exercise/my_exercises/table}"><i class="fa fa-table"></i> table</a></li>
+							<li class="active">exercises</li>
+						</ol>
+					</section>
+				
+					<div th:each=" exercise:${exercises}" class="col-sm-4">
+			              <div class="box box-primary">
+			                <div class="box-body">
+				                	<div class="row">
+					                  <div class="col-sm-6" >
+					                  	<h5><b>Visibility:</b></h5>
+											<span class="label label-warning" th:text="${exercise.visibility.description}">Public</span>
+					                  	<h5><b>Group size:</b></h5>
+					                  		<span class="label label-default" th:text="${exercise.groupSize.description}">Goup(2-8)</span>
+					                  </div>
+					                  
+					                   <div class="col-sm-6" >
+					                   	<h5><b>Main focus:</b></h5>
+											<span class="label label-success" th:text="${exercise.mainFocus.description}">Attack</span>
+										<h6>
+										<b>Fitness:</b><span class="badge bg-red pull-right" th:text="|${exercise.fitness} %|">20%</span>
+										</h6>
+										<h6>
+										<b>Technique:</b><span class="badge bg-yellow pull-right"th:text="|${exercise.technique} %|">50%</span>
+										</h6>
+										<h6>
+										<b>Tactics:</b><span class="badge bg-blue pull-right"th:text="|${exercise.tactics} %|">30%</span>
+										</h6>
+					                   </div>
+				                 </div>
+			                </div><!-- /.box-body-->
+			                <div class="box-footer">
+									<div class="pull-right">
+										<a th:href=@{/exercise/register} class="btn btn-primary">
+											<i class="fa fa-edit"></i> Edit
+										</a>
+										<a th:href=@{/exercise/register} class="btn btn-info">
+											<i class="fa fa-eye"></i> Details
+										</a>
+										
+									</div>
+									<a th:href="@{/club/dashboard}" class="btn btn-danger">
+										<i class="fa fa-trash-o"></i> Delete
+									</a>
+								</div>
+			              </div><!-- /.box -->
+			        </div>
+		</section>
+
+	</div>
+</body>
+
+</html>

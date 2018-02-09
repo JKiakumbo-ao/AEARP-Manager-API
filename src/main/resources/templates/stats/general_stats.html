@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/patternLayout'">
+<head></head>
+
+<body class="skin-blue">
+	<div class="wrapper">
+		<section class="content" layout:fragment="content">
+			<div class="col-sm-9">
+				<div class="aw-graph-box">
+					<div class="aw-graph-box__header">
+						<h1>Stats<small> per player</small></h1>
+					</div>
+					<div class="aw-graph-box__content">
+						<!--<div class="aw-graph-box__no-data">
+							<i class="fa  fa-line-chart  fa-2x"></i>
+							<span>Não há dados</span>
+						</div>-->
+						<div>
+							<canvas id="statsGraph" height="160"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+				<a th:href="@{/club/stats_attack}" class="btn btn-block btn-social btn-dropbox">
+             		<i class="fa fa-bar-chart-o"></i> Attack stats
+          		</a>
+          		<a th:href="@{/stats/classification}" class="btn btn-block btn-social btn-google-plus">
+             		<i class="fa fa-bar-chart-o"></i> Defence stats
+          		</a>
+          		<a th:href="@{/stats/classification}" class="btn btn-block btn-social btn-github">
+             		<i class="fa fa-bar-chart-o"></i> Goalkeeper stats
+          		</a>
+			</div>
+		</section>
+		<th:block layout:fragment="javascript-extra">
+			 <script th:src="@{/js/Chart.min.js}" type="text/javascript"></script>
+    		 <script th:src="@{/js/general.stats.js}" type="text/javascript"></script>
+		</th:block>
+	</div>
+</body>
+
+</html>

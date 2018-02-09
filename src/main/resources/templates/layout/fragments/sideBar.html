@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+	<aside class="main-sidebar" th:fragment="aside">
+		<!-- sidebar: style can be found in sidebar.less -->
+		<section class="sidebar">
+			<!-- Sidebar user panel -->
+			<div class="user-panel">
+				<div class="pull-left image">
+					<img th:src="@{/dist/img/avatar5.png}" class="img-circle"
+						alt="User Image" />
+				</div>
+				<div class="pull-left info">
+					<p>Team trainer</p>
+
+					<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+				</div>
+			</div>
+			<!-- search form -->
+			<form action="#" method="get" class="sidebar-form">
+				<div class="input-group">
+					<input type="text" name="q" class="form-control"
+						placeholder="Search..." /> <span class="input-group-btn">
+						<button type='submit' name='search' id='search-btn'
+							class="btn btn-flat">
+							<i class="fa fa-search"></i>
+						</button>
+					</span>
+				</div>
+			</form>
+			<!-- /.search form -->
+			<!-- sidebar menu: : style can be found in sidebar.less -->
+			<ul class="sidebar-menu">
+				<li class="header">MAIN NAVIGATION</li>
+				
+					<li class="treeview"><a href="#"> <i class="fa fa-home"></i>
+						<span>Club House</span> <i class="fa fa-angle-left pull-right"></i>
+				</a>
+					  <ul class="treeview-menu">
+
+							<li><a th:href="@{/admin_membership/register}"><i
+										class="fa fa-pencil"></i>Club</a></li>
+							<li><a th:href="@{/team/search}"><i
+										class="fa fa-users"></i>Teams</a></li>
+							<li><a th:href="@{/user/search}"><i
+										class="fa fa-users"></i>Members</a></li>
+							<li><a th:href="@{/site/search}"><i
+										class="fa fa-map-marker"></i>Sites</a></li>
+							<li><a th:href="@{/athlete/register}"><i
+										class="fa fa-comments"></i>Chat</a></li>
+					</ul></li>
+					
+				<li class="active"><a th:href="@{/club/dashboard}"><i
+						class="fa fa-dashboard"></i> Dashboard</a></li>
+						
+				<li class="active"><a th:href="@{/schedule/register}"><i
+						class="fa  fa-calendar"></i> Calendar</a></li>
+						
+				<li class="active"><a th:href="@{/stats/classification}"><i
+						class="fa  fa-bar-chart-o"></i> Stats</a></li>
+						
+				<li class="active"><a th:href="@{/invite/register}"><i
+										class="fa fa-gamepad"></i>Invite to game</a></li>
+					
+				<li class="treeview"><a href="#"> <i class="fa fa-edit"></i>
+						<span>Create</span> <i class="fa fa-angle-left pull-right"></i>
+				</a>
+					<ul class="treeview-menu">
+
+							
+							<li><a th:href="@{/team/register}"><i
+										class="fa fa-plus-square-o"></i>New team</a></li>
+							<li><a th:href="@{/user/register}"><i
+										class="fa fa-plus-square-o"></i>New member</a></li>
+							<li><a th:href="@{/exercise/register}"><i
+										class="fa fa-plus-square-o"></i>New season</a></li>
+							<li><a th:href="@{/site/register}"><i
+										class="fa fa-plus-square-o"></i>New site</a></li>
+							
+							 
+							<li><a th:href="@{/exercise/register}"><i
+										class="fa fa-plus-square-o"></i>New exercise</a></li>
+							
+							<li><a th:href="@{/tactic/register}"><i
+										class="fa fa-plus-square-o"></i>New tactic</a></li>
+										
+							<li><a th:href="@{/team_event/register}"><i
+										class="fa fa-plus-square-o"></i>New event</a></li>
+							
+
+					</ul></li>
+					
+					<li class="active"><a th:href="@{/session/register}"><i
+										class="fa fa-plus-square-o"></i>New session</a></li>
+				
+					<li class="treeview"><a href="#"> <i class="fa fa-puzzle-piece"></i>
+						<span>Training Ground</span> <i class="fa fa-angle-left pull-right"></i>
+				</a>
+					<ul class="treeview-menu">
+ 
+							 <li><a th:href="@{/admin_membership/register}"><i
+										class="fa fa-archive"></i>Data base</a></li>
+							<li><a th:href="@{/team_event/}"><i
+										class="fa fa-calendar"></i>Schedule</a></li>
+							  <li><a th:href="@{/exercise/my_exercises}"><i
+										class="fa fa-square-o"></i>My Exercises</a></li>
+							<li><a th:href="@{/exercise/my_favorites}"><i
+										class="fa fa-heart"></i>My Favorites</a></li>
+							<li><a th:href="@{/session/}"><i
+										class="fa fa-gears"></i>Session Manager</a></li>
+							<li><a th:href="@{/parent/register}"><i
+										class="fa fa-signal"></i>Tactics</a></li> 
+							
+							<li><a th:href="@{/player_session/search}"><i
+										class="fa fa-bar-chart-o"></i>Training stats</a></li>
+						
+							<!--<li><a th:href="@{/player_session/register}"><i
+										class="fa fa-signal"></i>New score</a></li>-->
+							<li><a th:href="@{/player_session/register}"><i
+										class="fa fa-signal"></i> New Traning score</a></li>
+							
+
+					</ul></li>
+					 
+							<li class="treeview"><a href="#"> <i class="fa fa-trophy"></i>
+								<span>The Season</span> <i class="fa fa-angle-left pull-right"></i>
+						</a>
+							<ul class="treeview-menu">
+		
+									<li><a th:href="@{/gameday/register}"><i
+												class="fa fa-gamepad"></i>Game days</a></li>
+									<li><a th:href="@{/stats/season}"><i
+												class="fa fa-bar-chart-o"></i>Season stats</a></li>
+									<li><a th:href="@{/team_game/search}"><i
+												class="fa fa-gamepad"></i>Games score</a></li>
+									<li><a th:href="@{/team_game/register}"><i
+												class="fa fa-gamepad"></i>New game score</a></li>
+									<li><a th:href="@{/player_game/register}"><i
+												class="fa fa-gamepad"></i>New training score</a></li>
+							</ul></li>
+							
+							
+			</ul>
+		</section>
+		<!-- /.sidebar -->
+	</aside>
+</body>
+</html>

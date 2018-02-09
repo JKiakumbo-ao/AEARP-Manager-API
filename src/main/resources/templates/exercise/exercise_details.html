@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div class="modal fade" id="technicalStaffDetailModal" tabindex="-1"
+		role="dialog" th:fragment="technicalStaffModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<h3><i class="fa fa-info-circle"></i> Group level information</h3>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-5">
+
+							<label class="control-label" > Number of groups level:</label> <span th:text="${#lists.size(technicalStaff.groupsLevel)}"></span><br/>
+
+							<label class="control-label" > Coach:</label> <span th:text="|${technicalStaff.coach.name} ${technicalStaff.coach.surname}|"></span><br/>
+							
+							<label class="control-label" > Assistent:</label> <span th:text="|${technicalStaff.assistent.name} ${technicalStaff.assistent.surname}|"></span><br/>
+							
+							<label class="control-label" > Number of members:</label> <span th:text="${#lists.size(technicalStaff.members)}"></span><br/>
+							
+						</div>
+						<div class="col-sm-7">
+							<label  class="control-label" >Groups level:</label>
+							<div  th:each ="groupLevel : ${groupsLevel}">
+								<span th:text="${groupLevel.name}"></span>
+							</div>
+						</div>
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default pull-left"
+							data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

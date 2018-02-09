@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/patternLayout'">
+<head></head>
+
+<body class="skin-blue">
+	<div class="wrapper">
+		<section class="content" layout:fragment="content">
+					<section class="content-header">
+						<h1>
+							Teams <small>Control panel</small>
+						</h1>
+						<ol class="breadcrumb">
+							<li><a th:href="@{/team/search/table}"><i class="fa fa-table"></i> table</a></li>
+							<li class="active">Teams</li>
+						</ol>
+					</section>
+					<div th:each="team : ${teams}" class="col-sm-4">
+			              <div class="box box-primary">
+			                
+			                <div class="box-body">
+				                	<div class="row">
+				                		<div class="col-sm-6">
+				                		<h1><span class="label label-default"><i class="fa fa-users"><b th:text="${team.name}">Junior</b></i></span></h1>
+				                		</div>
+					                   <div class="col-sm-6" >
+										<h6>
+										<b>Players:</b><span class="badge bg-red pull-right" th:text="${#lists.size(team.players)}">20</span>
+										</h6>
+										<h6>
+										<b>Trainers:</b><span class="badge bg-yellow pull-right" th:text="${#lists.size(team.trainers)}">50</span>
+										</h6>
+										<h6>
+										<b>Coachs:</b><span class="badge bg-blue pull-right" th:text="${#lists.size(team.coachs)}">30</span>
+										</h6>
+										<h6>
+										<b>Other members:</b><span class="badge bg-green pull-right" th:text="${#lists.size(team.members)}">30</span>
+										</h6>
+					                   </div>
+				                 </div>
+			                </div><!-- /.box-body-->
+			                <div class="box-footer">
+									<div class="pull-right">
+										<a th:href=@{/exercise/register} class="btn btn-primary">
+											<i class="fa fa-edit"></i> Edit
+										</a>
+										<a th:href=@{/team/details/{id}(id=${team.id})} class="btn btn-info">
+											<i class="fa fa-eye"></i> Details
+										</a>
+										
+									</div>
+									<a th:href="@{/club/dashboard}" class="btn btn-danger">
+										<i class="fa fa-trash-o"></i> Delete
+									</a>
+								</div>
+			              </div><!-- /.box -->
+			        </div>
+		</section>
+
+	</div>
+</body>
+
+</html>

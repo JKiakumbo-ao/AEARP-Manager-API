@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/patternLayout'">
+<head></head>
+
+<body class="skin-blue">
+	<div class="wrapper">
+		<section class="content" layout:fragment="content">
+			<th:block th:include="fragments/MensageSuccess"></th:block>
+			<form th:object="${site}" method="post" th:action="${site.new} ? @{/site/register}:
+			 @{/site/{id}(id= ${site.id})}">
+			 	<th:block th:include="fragments/MensagesErrorValidation"></th:block>
+				<div class="row">
+					<div class="col-md-9">
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<h3 th:if="${site.new}" class="box-title">New Site</h3>
+								<h3 th:unless="${site.new}" class="box-title" th:text="|Editing Site ${site.name}|">New Site</h3>
+							</div>
+							<!-- /.box-header -->
+
+							<div class="box-body">
+
+									<!-- input states -->
+
+								<div class="form-group /has-success col-sm-12" th:classappend="${#fields.hasErrors('name')} ? has-error">
+
+									<label class="control-label" for="inputSuccess">
+									<i class="fa  fa-home"></i> Site name:</label> 
+									<input type="text" th:field="*{name}"
+										class="form-control" id="inputSuccess" placeholder="Football" />
+								</div>
+								<div class="form-group /has-success col-sm-12" th:classappend="${#fields.hasErrors('address')} ? has-error">
+
+									<label class="control-label" for="inputSuccess">
+									<i class="fa  fa-map-marker"></i> Address:</label> 
+									<input type="text" th:field="*{address}"
+										class="form-control" id="inputSuccess" placeholder="Football" />
+								</div>
+								<div class="form-group /has-success col-sm-12" th:classappend="${#fields.hasErrors('mapLink')} ? has-error">
+
+									<label class="control-label" for="inputSuccess">
+									<i class="fa fa-external-link"></i> Map link:</label> 
+									<input type="text" th:field="*{mapLink}"
+										class="form-control" id="inputSuccess" placeholder="Football" />
+								</div>
+								<div class="form-group /has-success col-sm-12" th:classappend="${#fields.hasErrors('residentClubName')} ? has-error">
+
+									<label class="control-label" for="inputSuccess">
+									<i class="fa  fa-flag"></i> residentClubeName:</label> 
+									<input type="text" th:field="*{residentClubName}"
+										class="form-control" id="inputSuccess" placeholder="Football" />
+								</div>
+								<div class="form-group /has-success col-sm-12" th:classappend="${#fields.hasErrors('isGymnasium')} ? has-error">
+
+									<label class="control-label" for="inputSuccess">
+									<i class="fa a-road"></i> Is Gymnasium:</label> 
+									<input type="text" th:field="*{isGymnasium}"
+										class="form-control" id="inputSuccess" placeholder="Football" />
+								</div>
+								<!-- radio -->
+				                  <div class="form-group">
+				                    
+				                  </div>
+
+							</div>
+							<!-- /.box-body -->
+							<div class="box-footer">
+								<div class="pull-right">
+									<a th:href=@{/site/register} class="btn btn-default">
+										<i th:if="${site.new}" class="fa fa-eraser"></i> Clean
+									</a>
+									<button type="submit" class="btn btn-primary">
+										<i class="fa fa-save"></i> Save
+									</button>
+								</div>
+								<a th:href="@{/club/dashboard}" class="btn btn-default">
+									<i class="fa fa-times"></i> Close
+								</a>
+							</div>
+							<!-- /.box-footer -->
+						</div>
+						<!-- /. box -->
+					</div>
+					<div class="col-md-3">
+						
+					</div>
+				</div>
+			</form>
+		</section>
+	</div>
+</body>
+
+</html>

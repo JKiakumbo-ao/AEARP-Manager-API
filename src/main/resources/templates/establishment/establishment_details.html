@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div class="modal fade" id="establishmentDetailModal" tabindex="-1"
+		role="dialog" th:fragment="establishmentModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<h3><i class="fa fa-info-circle"></i> Establishment information</h3>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-6">
+							
+							  	<p><label th:text="${establishment.name}">
+									Alexander Pierce
+								</label><p/>
+							<label class="control-label" for="inputError">Street:</label> <span th:text="|${establishment.number} ${establishment.street} street|"></span><br/>
+
+							<label class="control-label" for="inputSuccess"> City:</label> <span th:text="${establishment.city}"></span><br/>
+
+							<label class="control-label" for="inputSuccess"> Zip code:</label> <span th:text="${establishment.zipCode}"></span><br/>
+							
+							<label class="control-label" for="inputSuccess"> Country:</label> <span th:text="${establishment.country.countryName}"></span><br/>
+							
+						</div>
+						<div class="col-sm-6">
+
+							<label class="control-label" for="inputError"> Establishment manager:</label> <span th:text="${establishment.manager}"></span><br/>
+							
+						</div>
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default pull-left"
+							data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/patternLayout}">
+<head></head>
+
+<body class="skin-blue">
+	<div class="content-wrapper">
+		<section class="content" layout:fragment="content">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<h1>
+					Data Tables <small>advanced tables</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+					<li><a href="#">Tables</a></li>
+					<li class="active">Data tables</li>
+				</ol>
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">Data Table With Full Features</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body table-responsive">
+								<table id="dataTable"
+									class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th>Training Date</th>
+											<th>Technical Exercise</th>
+											<th>Technical Score</th>
+											<th>Technical Efficiency</th>
+											<th>Physical Exercise</th>
+											<th>Physical Score</th>
+											<th>Physical Efficiency</th>
+											<th>Options</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr th:each="playerSession : ${playerSessions}">
+
+											<td th:text="${playerSession.session}"></td>
+
+											<td th:text="${playerSession.totalTechnicalTraining}"></td>
+
+											<td th:text="${#numbers.formatDecimal(playerSession.technicalRate,1,2,'COMMA')}"></td>
+											
+											<td th:text="${#numbers.formatDecimal(playerSession.technicalScore,2,2,'COMMA')}"></td>
+
+											<td th:text="${playerSession.totalPhysicalTraining}"></td>
+
+											<td th:text="${#numbers.formatDecimal(playerSession.physicalRate,1,2,'COMMA')}"></td>
+											
+											<td th:text="${#numbers.formatDecimal(playerSession.physicalScore,2,2,'COMMA')}"></td>
+
+											<td>
+												<div class="pull-right">
+													<a th:onclick="'javascript:openPlayerModal(\''+${playerSession.id}+'\');'"
+														title="see more details" href="#"><i
+														class="glyphicon glyphicon-eye-open text-primary"></i></a> 
+														<a class="btn  btn-link  btn-xs  js-tooltip" title="Editar"
+														th:href="@{/player_session/{id}(id=${playerSession.id})}"> <i
+														class="glyphicon glyphicon-edit text-success"></i>
+													</a>
+													<a class="btn  btn-link  btn-xs  js-tooltip  js-exclusao-btn" href="#"
+													th:attr="data-url=@{/player_session/{id}(id=${playerSession.id})}, 
+													data-objeto=${playerSession.totalTechnicalTraining}" title="Delete">
+														<i class="glyphicon glyphicon-trash text-danger"></i>
+													</a>
+												</div>
+											</td>
+
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<th>Training Date</th>
+											<th>Technical Exercise</th>
+											<th>Technical Score</th>
+											<th>Technical Efficiency</th>
+											<th>Physical Exercise</th>
+											<th>Physical Score</th>
+											<th>Physical Efficiency</th>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+							<!-- /.box-body -->
+						</div>
+						<!-- /.box -->
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+				<div id="playerModelHolder"></div>
+			</section>
+			<!-- /.content -->
+			<script type="text/javascript">
+				function openPlayerModal(id) {
+					$.ajax({
+						url : "/player/player/" + id,
+			
+						success : function(data) {
+							ht = data;
+							$("#playerModelHolder").html(data);
+							$("#playerDetailModal").modal("show");
+						}
+					});
+			
+				}
+			</script>
+		</section>
+
+	</div>
+
+</body>
+
+</html>

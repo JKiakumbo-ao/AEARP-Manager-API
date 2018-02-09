@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/patternLayout}">
+<head></head>
+
+<body class="skin-blue">
+	<div class="wrapper">
+		<section class="content" layout:fragment="content">
+		
+				
+					
+					          <div class="row">
+					            <div class="col-lg-3 col-xs-6">
+					              <!-- small box -->
+					              <div class="small-box bg-aqua">
+					                <div class="inner">
+					                  <h3>100<br/>Members</h3>
+					                </div>
+					                <div class="icon">
+					                  <i class="fa fa-dribbble"></i>
+					                </div>
+					                <a th:href="@{/member/search}" class="small-box-footer">Search <i class="fa fa-arrow-circle-right"></i></a>
+					              </div>
+					            </div><!-- ./col -->
+					            <div class="col-lg-3 col-xs-6">
+					              <!-- small box -->
+					              <div class="small-box bg-green">
+					                <div class="inner">
+					                  <h3>New<br/>Trainer</h3>
+					                </div>
+					                <div class="icon">
+					                  <i class="fa fa-users"></i>
+					                </div>
+					                <a th:href="@{/trainer/search}" class="small-box-footer">Search <i class="fa fa-arrow-circle-right"></i></a>
+					              </div>
+					            </div><!-- ./col -->
+					            <div class="col-lg-3 col-xs-6">
+					              <!-- small box -->
+					              <div class="small-box bg-yellow">
+					                <div class="inner">
+					                  <h3>New<br/>Athlete</h3>
+					                </div>
+					                <div class="icon">
+					                  <i class="fa fa-user"></i>
+					                </div>
+					                <a th:href="@{/player/search}" class="small-box-footer">Search <i class="fa fa-arrow-circle-right"></i></a>
+					              </div>
+					            </div><!-- ./col -->
+					            <div class="col-lg-3 col-xs-6">
+					              <!-- small box -->
+					              <div class="small-box bg-red">
+					                <div class="inner">
+					                  <h3>New<br/>Coach</h3>
+					                </div>
+					                <div class="icon">
+					                  <i class="ion ion-person"></i>
+					                </div>
+					                <a th:href="@{/coach/search}" class="small-box-footer">Search <i class="fa fa-arrow-circle-right"></i></a>
+					              </div>
+					            </div><!-- ./col -->
+					          </div><!-- /.row -->
+
+						
+						
+				
+		</section>
+
+	</div>
+</body>
+
+</html>

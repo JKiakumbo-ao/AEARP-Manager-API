@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/patternLayout}">
+<head></head>
+
+<body class="skin-blue">
+	<div class="content-wrapper">
+		<section class="content" layout:fragment="content">
+			 <!-- Info boxes -->
+          <div class="row">
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3 th:text="${members}">50</h3>
+                  <p>Others member</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-dribbble"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-green">
+                <div class="inner">
+                  <h3 th:text="${teams}"></h3>
+                  <p>Teams</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-users"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-yellow">
+                <div class="inner">
+                  <h3 th:text="${players}">130</h3>
+                  <p>Total of playes</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-user"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-red">
+                <div class="inner">
+                  <h3 th:text="${coaches} + ${coaches}">5</h3>
+                  <p>Coaches</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-person"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+          </div><!-- /.row -->
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="box">
+                <div class="row">
+                 
+                     <div class="col-md-6">
+		              <div class="box">
+		                <div class="box-header">
+		                  <h3 class="box-title">Bordered Table</h3>
+		                </div><!-- /.box-header -->
+		                <div class="box-body">
+		                  <table class="table table-bordered">
+		                    <tr>
+		                      <th style="width: 10px">#</th>
+		                      <th>Team</th>
+		                      <th>PI</th>
+		                      <th>W</th>
+		                      <th>D</th>
+		                      <th>L</th>
+		                      <th>F</th>
+		                      <th>A</th>
+		                      <th>GD</th>
+		                      <th style="width: 40px">Pts</th>
+		                    </tr>
+		                    <tr>
+		                      <td>1.</td>
+		                      <td>Senior</td>
+		                      <td>15</td>
+		                      <td>12</td>
+		                      <td>3</td>
+		                      <td>0</td>
+		                      <td>38</td>
+		                      <td>7</td>
+		                      <td>31</td>
+		                      <td><span class="badge bg-red">39</span></td>
+		                    </tr>
+		                    <tr>
+		                      <td>2.</td>
+		                      <td>Junior</td>
+		                      <td>20</td>
+		                      <td>9</td>
+		                      <td>6</td>
+		                      <td>5</td>
+		                      <td>14</td>
+		                      <td>7</td>
+		                      <td>17</td>
+		                      <td><span class="badge bg-yellow">32</span></td>
+		                    </tr>
+		                    <tr>
+		                      <td>3.</td>
+		                      <td>U-17</td>
+		                      <td>10</td>
+		                      <td>8</td>
+		                      <td>1</td>
+		                      <td>1</td>
+		                      <td>17</td>
+		                      <td>4</td>
+		                      <td>13</td>
+		                      <td><span class="badge bg-light-blue">25</span></td>
+		                    </tr>
+		                    <tr>
+		                      <td>4.</td>
+		                      <td>U-15</td>
+		                      <td>0</td>
+		                      <td>0</td>
+		                      <td>0</td>
+		                      <td>0</td>
+		                      <td>0</td>
+		                      <td>0</td>
+		                      <td>0</td>
+		                      <td><span class="badge bg-green">0</span></td>
+		                    </tr>
+		                    <tr>
+		                      <td>5.</td>
+		                      <td>U-12</td>
+		                      <td>11</td>
+		                      <td>10</td>
+		                      <td>1</td>
+		                      <td>30</td>
+		                      <td>4</td>
+		                      <td>5</td>
+		                      <td>23</td>
+		                      <td><span class="badge bg-green">31</span></td>
+		                    </tr>
+		                  </table>
+		                </div><!-- /.box-body -->
+		                <div class="box-footer clearfix">
+		                  <ul class="pagination pagination-sm no-margin pull-right">
+		                    <li><a href="#">&laquo;</a></li>
+		                    <li><a href="#">1</a></li>
+		                    <li><a href="#">2</a></li>
+		                    <li><a href="#">3</a></li>
+		                    <li><a href="#">&raquo;</a></li>
+		                  </ul>
+		                </div>
+		              </div><!-- /.box -->
+		
+		            </div><!-- /.col -->
+		               <div class="col-md-6">
+                      	<!-- solid sales graph -->
+			            
+			               
+			                  <div class="row">
+			                  	<h3 class="box-title"></h3>
+			                    <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+			                      <input type="text" class="knob" data-readonly="true" value="20" data-width="200" data-height="200" data-fgColor="#39CCCC"/>
+			                      <div class="knob-label">Defeated</div>
+			                    </div><!-- ./col -->
+			                    <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+			                      <input type="text" class="knob" data-readonly="true" value="50" data-width="200" data-height="200" data-fgColor="#000000"/>
+			                      <div class="knob-label">Victory</div>
+			                    </div><!-- ./col -->
+			                    <div class="col-xs-4 text-center">
+			                      <input type="text" class="knob" data-readonly="true" value="30" data-width="200" data-height="200" data-fgColor="#ee0000"/>
+			                      <div class="knob-label">a tie</div>
+			                    </div><!-- ./col -->
+			                  </div><!-- /.row -->
+			                
+			              
+                      	
+                    </div><!-- /.col -->
+                  </div><!-- /.row -->
+                
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+
+          <!-- Main row -->
+          <div class="row">
+            <!-- Left col -->
+            <div class="col-md-8">
+              <!-- MAP & BOX PANE -->
+              <!-- Map box -->
+              <div class="box box-solid bg-light-blue-gradient">
+                <div class="box-header">
+                  <!-- tools box -->
+                  <div class="pull-right box-tools">
+                    <button class="btn btn-primary btn-sm pull-right" data-widget='collapse' data-toggle="tooltip" title="Collapse" style="margin-right: 5px;"><i class="fa fa-minus"></i></button>
+                  </div><!-- /. tools -->
+
+                  <i class="fa fa-map-marker"></i>
+                  <h3 class="box-title">
+                    Athlestes per nacionality
+                  </h3>
+                </div>
+                <div class="box-body">
+                  <div id="world-map" style="height: 250px; width: 100%;"></div>
+                </div><!-- /.box-body-->
+              </div>
+              <!-- /.box -->
+
+            </div><!-- /.col -->
+
+            <div class="col-md-4">
+             <!-- Calendar -->
+              <div class="box box-solid bg-green-gradient">
+                <div class="box-header">
+                  <i class="fa fa-calendar"></i>
+                  <h3 class="box-title">Calendar</h3>
+                  <!-- tools box -->
+                  <div class="pull-right box-tools">
+                    <!-- button with a dropdown -->
+                    <div class="btn-group">
+                      <button class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
+                      <ul class="dropdown-menu pull-right" role="menu">
+                        <li><a href="#">Add new event</a></li>
+                        <li><a href="#">Clear events</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">View calendar</a></li>
+                      </ul>
+                    </div>
+                    <button class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div><!-- /. tools -->
+                </div><!-- /.box-header -->
+                <div class="box-body no-padding">
+                  <!--The calendar -->
+                  <div id="calendar" style="width: 100%"></div>
+                </div><!-- /.box-body -->
+                <div class="box-footer text-black">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- Progress bars -->
+                      <div class="clearfix">
+                        <span class="pull-left">Senior Season</span>
+                        <small class="pull-right">90%</small>
+                      </div>
+                      <div class="progress xs">
+                        <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
+                      </div>
+
+                      <div class="clearfix">
+                        <span class="pull-left">Junior Season</span>
+                        <small class="pull-right">70%</small>
+                      </div>
+                      <div class="progress xs">
+                        <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
+                      </div>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                      <div class="clearfix">
+                        <span class="pull-left">U-17 Season</span>
+                        <small class="pull-right">60%</small>
+                      </div>
+                      <div class="progress xs">
+                        <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
+                      </div>
+
+                      <div class="clearfix">
+                        <span class="pull-left">U-12 Season</span>
+                        <small class="pull-right">40%</small>
+                      </div>
+                      <div class="progress xs">
+                        <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
+                      </div>
+                    </div><!-- /.col -->
+                  </div><!-- /.row -->
+                </div>
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+		</section>
+		<th:block layout:fragment="javascript-extra">
+			<!-- Morris.js charts -->
+		    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+			<script th:src="@{/plugins/morris/morris.min.js}" type="text/javascript"></script>
+			<!-- jQuery Knob Chart -->
+		    <script th:src="@{/plugins/knob/jquery.knob.js}" type="text/javascript"></script>
+		    <!-- Sparkline -->
+		    <script th:src="@{/plugins/sparkline/jquery.sparkline.min.js}" type="text/javascript"></script>
+   			 <script th:src="@{/dist/js/pages/dashboard.js}" type="text/javascript"></script>
+    		 <script th:src="@{/dist/js/pages/dashboard2.js}" type="text/javascript"></script>
+		</th:block>
+	</div>
+
+</body>
+
+</html>

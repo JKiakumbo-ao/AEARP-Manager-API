@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/patternLayout}">
+<head></head>
+
+<body class="skin-blue">
+	<div class="content-wrapper">
+		<section class="content" layout:fragment="content">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<h1>
+					Data Tables <small>advanced tables</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+					<li><a href="#">Tables</a></li>
+					<li class="active">Data tables</li>
+				</ol>
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">Data Table With Full Features</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body table-responsive">
+								<table id="dataTable"
+									class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th>Game Date</th>
+											<th>Oponnent</th>
+											<th>goals scored</th>
+											<th>goals conceded</th>
+											<th>Yellow cards</th>
+											<th>Red cards</th>
+											<th>Shots on target</th>
+											<th>Ball possession</th>
+											<th>Options</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr th:each="teamGame : ${teamGames}">
+
+											<td th:text="${teamGame.game}"></td>
+											
+											<td th:text="${teamGame.game}"></td>
+											
+											<td th:text="${teamGame.goalsScored}"></td>
+
+											<td th:text="${teamGame.goalsConceded}"></td>
+
+											<td th:text="${teamGame.yellowCards}"></td>
+											
+											<td th:text="${teamGame.redCards}"></td>
+
+											<td th:text="${teamGame.shotsOnTarget}"></td>
+											
+											<td th:text="|${teamGame.posse} %|"></td>
+
+											<td>
+												<div class="pull-right">
+													<a th:onclick="'javascript:openPlayerModal(\''+${teamGame.id}+'\');'"
+														title="see more details" href="#"><i
+														class="glyphicon glyphicon-eye-open text-primary"></i></a> 
+														<a class="btn  btn-link  btn-xs  js-tooltip" title="Editar"
+														th:href="@{/team_game/{id}(id=${teamGame.id})}"> <i
+														class="glyphicon glyphicon-edit text-success"></i>
+													</a>
+													<a class="btn  btn-link  btn-xs  js-tooltip  js-exclusao-btn" href="#"
+													th:attr="data-url=@{/team_game/{id}(id=${teamGame.id})}, 
+													data-objeto=${teamGame.posse}" title="Delete">
+														<i class="glyphicon glyphicon-trash text-danger"></i>
+													</a>
+												</div>
+											</td>
+
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<th>Game Date</th>
+											<th>Oponnent</th>
+											<th>goals scored</th>
+											<th>goals conceded</th>
+											<th>Yellow cards</th>
+											<th>Red cards</th>
+											<th>Shots on target</th>
+											<th>Ball possession</th>
+											<th>Options</th>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+							<!-- /.box-body -->
+						</div>
+						<!-- /.box -->
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+				<div id="playerModelHolder"></div>
+			</section>
+			<!-- /.content -->
+			<script type="text/javascript">
+				function openPlayerModal(id) {
+					$.ajax({
+						url : "/player/player/" + id,
+			
+						success : function(data) {
+							ht = data;
+							$("#playerModelHolder").html(data);
+							$("#playerDetailModal").modal("show");
+						}
+					});
+			
+				}
+			</script>
+		</section>
+
+	</div>
+
+</body>
+
+</html>

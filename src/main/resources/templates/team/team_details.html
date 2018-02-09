@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/patternLayout'">
+<head></head>
+
+<body class="skin-blue">
+	<div class="wrapper">
+		<section class="content" layout:fragment="content">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="box box-primary">
+							<div class="box-header with-border">
+							<h1><span class="label label-primary" th:text="${team.name}"></span></h1>
+							</div>
+							<!-- /.box-header -->
+
+							<div class="box-body">
+								<div class="row">
+									<div class="col-sm-6">
+										<h3><span class="label label-info"><i class="fa fa-users"></i> Players</span></h3>
+
+										<table class="table table-bordered table-hover example2">
+						                    <thead>
+						                      <tr>
+						                      	<th>Photo</th>
+						                        <th>Name</th>
+						                        <th>Posission</th>
+						                        <th>Options</th>
+						                        
+						                      </tr>
+						                    </thead>
+						                    <tbody>
+						                      <tr>
+						                        <td>Trident</td>
+						                        <td>Internet
+						                          Explorer 4.0</td>
+						                        <td>Win 95+</td>
+						                         <td>Trident</td>
+						                        
+						                      </tr>
+						                     
+						                    </tbody>
+						                    <tfoot>
+						                     
+						                    </tfoot>
+					                  </table>
+									</div>
+									<div class="col-sm-6">
+									<h3><span class="label label-success"><i class="fa fa-users"></i> Trainers</span></h3>
+
+										<table class="table table-bordered table-hover example2">
+						                    <thead>
+						                      <tr>
+						                      	<th>Photo</th>
+						                        <th>Name</th>
+						                        <th>Options</th>
+						                        
+						                      </tr>
+						                    </thead>
+						                    <tbody>
+						                      <tr>
+						                        <td>Trident</td>
+						                        <td>Internet
+						                          Explorer 4.0</td>
+						                        <td>Trident</td>
+						                        
+						                      </tr>
+						                     
+						                     
+						                    </tbody>
+						                    <tfoot>
+						                     
+						                    </tfoot>
+					                  </table>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<h3><span class="label label-warning"><i class="fa fa-users"></i> Coachs</span></h3>
+
+										<table class="table table-bordered table-hover example2">
+						                    <thead>
+						                      <tr>
+						                      	<th>Photo</th>
+						                        <th>Name</th>
+						                        <th>Options</th>
+						                      </tr>
+						                    </thead>
+						                    <tbody>
+						                      <tr>
+						                        <td>Name</td>
+						                         <td>Trident</td>
+						                        <td>Internet
+						                          Explorer 4.0</td>
+						                      </tr>
+						                     
+						                     
+						                    </tbody>
+						                    <tfoot>
+						                     
+						                    </tfoot>
+					                  </table>
+									</div>
+									<div class="col-sm-6">
+									<h3><span class="label label-danger"><i class="fa fa-users"></i> Other members</span></h3>
+										<table class="table table-bordered table-hover example2">
+						                    <thead>
+						                      <tr>
+						                      	<th>Photo</th>
+						                        <th>Name</th>
+						                        <th>Options</th>
+						                       
+						                      </tr>
+						                    </thead>
+						                    <tbody>
+						                      <tr>
+						                        <td>Trident</td>
+						                         <td>Trident</td>
+						                        <td>Internet
+						                          Explorer 4.0</td>
+						                      </tr>
+						                     
+						                     
+						                    </tbody>
+						                    <tfoot>
+						                     
+						                    </tfoot>
+					                  </table>
+									</div>
+								</div>
+								
+
+							</div>
+							<!-- /.box-body -->
+							<div class="box-footer">
+								<div class="pull-right">
+									<a th:href=@{/team/search} class="btn btn-info">
+										<i  class="fa fa-edit"></i> Edit
+									</a>
+								</div>
+								<a th:href="@{/club/dashboard}" class="btn btn-default">
+									<i class="fa fa-times"></i> Close
+								</a>
+								
+							</div>
+							<!-- /.box-footer -->
+						</div>
+						<!-- /. box -->
+					</div>
+					<div class="col-md-3">
+						
+					</div>
+				</div>
+		</section>
+	</div>
+</body>
+
+</html>

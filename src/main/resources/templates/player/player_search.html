@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/patternLayout}">
+<head></head>
+
+<body class="skin-blue">
+	<div class="content-wrapper">
+		<section class="content" layout:fragment="content">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<h1>
+					Data Tables <small>advanced tables</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+					<li><a href="#">Tables</a></li>
+					<li class="active">Data tables</li>
+				</ol>
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">Data Table With Full Features</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body table-responsive">
+								<table id="dataTable"
+									class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th>Photo</th>
+											<th>Name</th>
+											<th>E-mail</th>
+											<th>Document</th>
+											<th>Team</th>
+											<th>Contract end</th>
+											<th>Options</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr th:each="player : ${players}">
+
+											<td
+												th:onclick="'javascript:openPlayerModal(\''+${player.id}+'\');'"
+												title="click to see more details"><img
+												th:if="${player.photo}"
+												th:src="@{/photos/} + ${player.photo}"
+												class="img-circle sg-img-in-table" /> <img
+												th:unless="${player.photo}"
+												th:src="@{/dist/img/avatar5.png}"
+												class="img-circle sg-img-in-table" alt="User Image" /></td>
+
+											<td th:text="${player.name}+' '+${player.surname}"
+												th:onclick="'javascript:openPlayerModal(\''+${player.id}+'\');'"
+												title="click to see more details"></td>
+
+											<td th:text="${player.email}"
+												th:onclick="'javascript:openPlayerModal(\''+${player.id}+'\');'"
+												title="click to see more details"></td>
+
+											<td th:text="${player.documentType}"
+												th:onclick="'javascript:openPlayerModal(\''+${player.id}+'\');'"
+												title="click to see more details"></td>
+
+											<td th:text="${player.team.name}"
+												th:onclick="'javascript:openPlayerModal(\''+${player.id}+'\');'"
+												title="click to see more details"></td>
+
+											<td th:text="${player.contractEnd}"
+												th:onclick="'javascript:openPlayerModal(\''+${player.id}+'\');'"
+												title="click to see more details"></td>
+
+											<td>
+												<div class="pull-right">
+													<a href="#"
+														title="see more details"><i
+														class="glyphicon glyphicon-eye-open text-primary"></i></a> 
+														<a class="btn  btn-link  btn-xs  js-tooltip" title="Editar"
+														th:href="@{/player/{id}(id=${player.id})}"> <i
+														class="glyphicon glyphicon-edit text-success"></i>
+													</a>
+													<a class="btn  btn-link  btn-xs  js-tooltip  js-exclusao-btn" href="#"
+													th:attr="data-url=@{/athlete/{id}(id=${player.id})}, 
+													data-objeto=${player.name}" title="Delete">
+														<i class="glyphicon glyphicon-trash text-danger"></i>
+													</a>
+												</div>
+											</td>
+
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<th>Photo</th>
+											<th>Name</th>
+											<th>E-mail</th>
+											<th>Document</th>
+											<th>Team</th>
+											<th>Contract end</th>
+											<th>Options</th>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+							<!-- /.box-body -->
+						</div>
+						<!-- /.box -->
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+				<div id="playerModelHolder"></div>
+			</section>
+			<!-- /.content -->
+			<script type="text/javascript">
+				function openPlayerModal(id) {
+					$.ajax({
+						url : "/player/player/" + id,
+			
+						success : function(data) {
+							ht = data;
+							$("#playerModelHolder").html(data);
+							$("#playerDetailModal").modal("show");
+						}
+					});
+			
+				}
+			</script>
+		</section>
+
+	</div>
+
+</body>
+
+</html>

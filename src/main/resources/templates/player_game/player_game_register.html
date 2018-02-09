@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/patternLayout'">
+<head></head>
+
+<body class="skin-blue">
+	<div class="wrapper">
+		<section class="content" layout:fragment="content">
+			<th:block th:include="fragments/MensageSuccess"></th:block>
+			<form th:object="${playerGame}" method="post" th:action="${playerGame.new} ? @{/player_game/register}:
+			 @{/player_game/{id}(id= ${playerGame.id})}">
+			 	<th:block th:include="fragments/MensagesErrorValidation"></th:block>
+				
+					<div class="col-md-9">
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<h3 th:if="${playerGame.new}" class="box-title">New game score</h3>
+								<h3 th:unless="${playerGame.new}" class="box-title" th:text="|Editing player game|">New Activity</h3>
+							</div>
+							<!-- /.box-header -->
+
+							<div class="box-body">
+								<div class="row">
+								<div class="form-group col-sm-12" th:classappend="${#fields.hasErrors('player')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i>Player:</label> 
+											<select id="inputError"
+												class="form-control" th:field="*{Player}">
+												<option value="">Select rating</option>
+												<option th:each="player : ${players}" th:value="${player.id}"
+													th:text="|${player.name} ${player.surname}|"></option>
+											</select>
+										</div>
+									<div class="col-sm-6">
+									<div class="form-group col-sm-12">
+										<h2>
+											<i class="fa "></i> General
+										</h2>
+									</div>
+									<div class="form-group col-sm-4">
+										<label class="control-label" for="inputSuccess">
+											<i class="fa "></i>Goals:</label><br/> 
+										<div class="number-input">
+												<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+												<input class="quantity" min="0" max="100" step="1" th:field="*{goals}" value="0" type="number">
+												<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+										</div>
+												
+									</div>
+									<div class="form-group col-sm-4">
+										<label class="control-label" for="inputSuccess">
+											<i class="fa "></i>Assists: </label><br/> 
+										<div class="number-input">
+												<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+												<input class="quantity" min="0" max="100" step="1" th:field="*{assists}" value="0" type="number">
+												<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+										</div>
+												
+									</div>
+									<div class="form-group col-sm-4">
+										<label class="control-label" for="inputSuccess">
+											<i class="fa "></i>Yellow cards: </label><br/> 
+										<div class="number-input">
+												<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+												<input class="quantity" min="0" max="100" step="1" th:field="*{yellowCards}" value="0" type="number">
+												<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+										</div>
+												
+									</div>
+									<div class="form-group col-sm-4">
+										<label class="control-label" for="inputSuccess">
+											<i class="fa "></i>Red cards: </label><br/> 
+										<div class="number-input">
+												<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+												<input class="quantity" min="0" max="100" step="1" th:field="*{redCards}" value="0" type="number">
+												<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+										</div>
+												
+									</div>
+									<div class="form-group col-sm-4">
+										<label class="control-label" for="inputSuccess">
+											<i class="fa "></i>Substituted on: </label><br/> 
+										<div class="number-input">
+												<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+												<input class="quantity" min="0" max="100" step="1" th:field="*{substitutedOn}" value="0" type="number">
+												<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+										</div>
+												
+									</div>
+									<div class="form-group col-sm-4">
+										<label class="control-label" for="inputSuccess">
+											<i class="fa "></i>Substituted off: </label><br/> 
+										<div class="number-input">
+												<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+												<input class="quantity" min="0" max="100" step="1" th:field="*{substitutedOff}" value="0" type="number">
+												<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+										</div>
+												
+									</div>
+									<div class="form-group col-sm-4">
+										<label class="control-label" for="inputSuccess">
+											<i class="fa "></i>Minutes played: </label><br/> 
+										<div class="number-input">
+												<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+												<input class="quantity" min="0" max="100" step="1" th:field="*{minutesPlayed}" value="0" type="number">
+												<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+										</div>
+												
+									</div>
+								
+								</div>
+								
+									<div class="col-sm-6">
+										<div class="form-group col-sm-12">
+											<h2>
+												<i class="fa "></i> Attack
+											</h2>
+											<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Shots: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{shots}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Shots on target: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{shotsOnTarget}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Goals from header: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{goalsFromHeader}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Goals from penalty: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{goalsFromPenalty}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Goals from free kick: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{goalsFromFreeKick}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Off sides: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{offSides}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Passes: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{passes}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Crosses: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{crosses}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Corners taken: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{cornersTaken}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+									</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-6">
+										<div class="form-group col-sm-12">
+											<h2>
+												<i class="fa "></i> Defence
+											</h2>
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Interceptions: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{interceptions}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Tackles: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{tackles}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Last man tackles: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{lastManTackles}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Clearances: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{clearances}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Headed clearances: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{headedClearances}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Aerial battles won: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{aerialBattlesWon}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Own goals: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{ownGoals}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Errors leading to goal: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{errorsLeadingToGoal}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Penalties conceded: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{penaltiesConceded}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Fouls: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{fouls}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										</div>
+									
+										<div class="col-sm-6">
+											<div class="form-group col-sm-12">
+												<h2>
+													<i class="fa "></i> Goalkeeper
+												</h2>
+											</div>
+											<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Clean sheets: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{cleanSheets}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Goals Conceded: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{goalsConceded}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Saves: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{saves}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Penalties saved: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{penaltiesSaved}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Punches: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{punches}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>High clains: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{HighClains}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Sweeper clearances: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{sweeperClearances}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Throw outs: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{throwOuts}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										<div class="form-group col-sm-4">
+											<label class="control-label" for="inputSuccess">
+												<i class="fa "></i>Goals kicks: </label><br/> 
+											<div class="number-input">
+													<button  type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+													<input class="quantity" min="0" max="100" step="1" th:field="*{goalsKicks}" value="0" type="number">
+													<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+											</div>
+													
+										</div>
+										</div>
+								</div>								
+							</div>
+							<!-- /.box-body -->
+							<div class="box-footer">
+								<div class="pull-right">
+									<a th:href=@{/player_game/register} class="btn btn-default">
+										<i th:if="${playerGame.new}" class="fa fa-eraser"></i> Clean
+									</a>
+									<button type="submit" class="btn btn-primary">
+										<i class="fa fa-save"></i> Save
+									</button>
+								</div>
+								<a th:href="@{/club/dashboard}" class="btn btn-default">
+									<i class="fa fa-times"></i> Close
+								</a>
+							</div>
+							<!-- /.box-footer -->
+						</div>
+						<!-- /. box -->
+					</div>
+					<div class="col-md-3">
+						
+					</div>
+				</div>
+			</form>
+		</section>
+	</div>
+</body>
+
+</html>

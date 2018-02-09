@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div class="modal fade" id="athleteDetailModal" tabindex="-1"
+		role="dialog" th:fragment="athleteModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<h3><i class="fa fa-info-circle"></i> Athlete information</h3>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-5">
+							<div class="photo_in_details">
+							  	<img th:if="${athlete.photo != ''}" th:src="@{/photos/} + ${athlete.photo}"
+									class="img-circle sg-img-in-details"/>
+								<img th:unless="${athlete.photo != ''}" src="../../dist/img/avatar5.png"
+									class="img-circle sg-img-in-details" alt="User Image"/><br/><br/>
+								<label th:text="${athlete.name}+' '+${athlete.surname}">
+									Alexander Pierce
+								</label>
+							</div>
+							<br/>
+							<label class="control-label" for="inputError"> Gender:</label> <span th:text="${athlete.gender.description}"></span><br/>
+
+							<label class="control-label" for="inputSuccess"> Nacionality:</label> <span th:text="${athlete.nacionality}"></span><br/>
+
+							<label class="control-label" for="inputSuccess"> Date of Born:</label> <span th:text="${athlete.dateOfBorn}"></span><br/>
+							
+						</div>
+						<div class="col-sm-7">
+
+							<label class="control-label" for="inputError"> Document type:</label> <span th:text="${athlete.documentType}"></span><br/>
+
+							<label class="control-label" for="inputSuccess"> Document number:</label> <span th:text="${athlete.documentNumber}"></span><br/>
+							
+							<label class="control-label" for="phone"> Phone:</label> <span th:text="${athlete.phoneNumber}"></span><br/>
+
+							<label class="control-label" for="cellPhone"> Cell phone:</label> <span th:text="${athlete.cellPhoneNumber}"></span><br/>
+
+							<label class="control-label" for="inputWarning"> Email:</label> <span th:text="${athlete.email}"></span><br/>
+
+
+							<label class="control-label" for="inputSuccess"> Street:</label> <span th:text="${athlete.street}"></span><br/>
+
+							<label class="control-label" for="inputWarning"> Number:</label> <span th:text="${athlete.number}"></span><br/>
+
+							<label class="control-label" for="inputError"> Zip code:</label> <span th:text="${athlete.zipCode}"></span><br/>
+
+							<label class="control-label" for="inputSuccess"> city:</label> <span th:text="${athlete.city}"></span><br/>
+
+							<label class="control-label" for="inputSuccess"> Country:</label> <span th:text="${athlete.country.countryName}"></span><br/>
+
+							<label class="control-label" for="inputSuccess"> Contract end at:</label> <span th:text="${athlete.contractEnd}"></span><br/>
+							
+							<label class="control-label" for="inputWarning"> Group level:</label> <span th:text="${athlete.groupLevel.name}"></span><br/>
+							
+							<label class="control-label" for="inputSuccess"> Activity:</label> <span th:text="${athlete.activity.name}"></span><br/>
+							
+						</div>
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default pull-left"
+							data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

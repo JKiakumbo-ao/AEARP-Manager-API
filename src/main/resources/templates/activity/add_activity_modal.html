@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div class="modal fade" id="addActivityModal" tabindex="-1" role="dialog"  th:fragment="modal">
+		<div class="modal-dialog  ">
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<h4 class="modal-title">Activity</h4>
+				</div>
+
+				<div class="modal-body box box-warning">
+					<form action="#" method="post">
+						<div class="box-header">
+							<h3 class="box-title"></h3>
+						</div>
+						<!-- /.box-header -->
+						<div class="row">
+							<div class="box-body col-sm-12">
+
+								<!-- input states -->
+
+								<div class="form-group /has-success col-sm-12">
+
+									<label class="control-label" for="inputSuccess"><i
+										class="fa fa-dribbble"></i> Activity name:</label> <input type="text" name="name"
+										class="form-control" id="inputSuccess" placeholder="Football" />
+								</div>
+
+								<div class="form-group col-sm-6">
+									<label class="control-label" for="inputWarning"><i
+										class="fa fa-signal"></i> Groups level:</label> <input type="text"
+										name="groupsLevel" class="form-control" id="inputWarning"
+										placeholder="Add group level" />
+								</div>
+								
+								<div class="form-group  col-sm-6">
+									<label class="control-label" for="inputSuccess"><i
+										class="fa fa-users"></i>Athletes:</label> <input type="text"
+										name="athletes" class="form-control" id="inputSuccess"
+										placeholder="Add athletes" />
+								</div>
+
+							</div>
+						</div>
+				</form>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default pull-left"
+							data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save
+							changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

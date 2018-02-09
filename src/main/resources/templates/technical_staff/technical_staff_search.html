@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/patternLayout}">
+<head></head>
+
+<body class="skin-blue">
+	<div class="content-wrapper">
+		<section class="content" layout:fragment="content">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<h1>
+					Data Tables <small>advanced tables</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+					<li><a href="#">Tables</a></li>
+					<li class="active">Data tables</li>
+				</ol>
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">Data Table With Full Features</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body table-responsive">
+								<table id="dataTable"
+									class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th>Members</th>
+											<th>Group level</th>
+											<th>Coach</th>
+											<th>Assistent</th>
+											<th>Options</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr th:each="technicalStaff : ${technicalStaffs}">
+										
+											<td th:text="${#lists.size(technicalStaff.members)}"
+												th:onclick="'javascript:openTechnicalStaffModal(\''+${technicalStaff.id}+'\');'"
+												title="click to see more details"></td>
+
+											<td th:text="${#lists.size(technicalStaff.groupsLevel)}"
+												th:onclick="'javascript:openTechnicalStaffModal(\''+${technicalStaff.id}+'\');'"
+												title="click to see more details"></td>
+												
+											<td th:text="|${technicalStaff.coach.name} ${technicalStaff.coach.surname}|"
+												th:onclick="'javascript:openTechnicalStaffModal(\''+${technicalStaff.id}+'\');'"
+												title="click to see more details"></td>
+
+											<td th:text="|${technicalStaff.assistent.name} ${technicalStaff.assistent.surname}|"
+												th:onclick="'javascript:openTechnicalStaffModal(\''+${technicalStaff.id}+'\');'"
+												title="click to see more details"></td>
+
+											<td>
+												<div class="pull-right">
+													<a th:href="@{/edit/technical_staff/}+${technicalStaff.id}"
+														title="see more details"><i
+														class="glyphicon glyphicon-eye-open text-primary"></i></a> 
+														<a class="btn  btn-link  btn-xs  js-tooltip" title="Editar"
+														th:href="@{/technical_staff/{id}(id=${technicalStaff.id})}"> <i
+														class="glyphicon glyphicon-edit text-success"></i>
+													</a>
+													<a class="btn  btn-link  btn-xs  js-tooltip  js-exclusao-btn" href="#"
+													th:attr="data-url=@{/technical_staff/{id}(id=${technicalStaff.id})}, 
+													data-objeto=${technicalStaff}" title="Delete">
+														<i class="glyphicon glyphicon-trash text-danger"></i>
+													</a>
+												</div>
+											</td>
+
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<th>Members</th>
+											<th>Group level</th>
+											<th>Coach</th>
+											<th>Assistent</th>
+											<th>Options</th>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+							<!-- /.box-body -->
+						</div>
+						<!-- /.box -->
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+				<div id="technicalStaffModelHolder"></div>
+			</section>
+			<!-- /.content -->
+			<script type="text/javascript">
+				function openTechnicalStaffModal(id) {
+					$.ajax({
+						url : "/technical_staff/technical_staff/" + id,
+			
+						success : function(data) {
+							ht = data;
+							$("#technicalStaffModelHolder").html(data);
+							$("#technicalStaffDetailModal").modal("show");
+						}
+					});
+			
+				}
+			</script>
+		</section>
+
+	</div>
+
+</body>
+
+</html>

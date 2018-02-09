@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/patternLayout'">
+<head></head>
+
+<body class="skin-blue">
+	<div class="content-wrapper">
+		<section class="content" layout:fragment="content">
+			<div class="col-md-12">
+				<h1>Players stats</h1>
+			</div>
+			<div class="col-md-3">
+              <!-- Primary box -->
+              <div class="box box-solid box-primary">
+                <div class="box-header">
+                  <h3 class="box-title">General</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <a th:href="@{/stats/getGoals}" class="btn btn-block btn-info btn-lg">Goals</a>
+                  <a th:href="@{/stats/getAssists}" class="btn btn-block btn-info btn-lg">Assists</a>
+                  <a th:href="@{/stats/getMinutesPlayed}" class="btn btn-block btn-info btn-lg">Minutes played</a>
+                  <a th:href="@{/stats/getYellowCards}" class="btn btn-block btn-info btn-lg">Yellow cards</a>
+                  <a th:href="@{/stats/getRedCards}" class="btn btn-block btn-info btn-lg">Red cards</a>
+                  <a th:href="@{/stats/getSubstitutedOn}" class="btn btn-block btn-info btn-lg">Substituted on</a>
+                  <a th:href="@{/stats/getSubstitutedOff}" class="btn btn-block btn-info btn-lg">Substituted off</a>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+            <div class="col-md-3">
+              <!-- Primary box -->
+              <div class="box box-solid box-primary">
+                <div class="box-header">
+                  <h3 class="box-title">Attack</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <a th:href="@{/stats/getShots}" class="btn btn-block btn-info btn-lg">Shots</a>
+                  <a th:href="@{/stats/getShotsOnTarget}" class="btn btn-block btn-info btn-lg">Shots on target</a>
+                  <a th:href="@{/stats/getGoalsFromHeader}" class="btn btn-block btn-info btn-lg">Goals from header</a>
+                  <a th:href="@{/stats/getGoalsFromPenalty}" class="btn btn-block btn-info btn-lg">Goals from penalty</a>
+                  <a th:href="@{/stats/getGoalsFromFreeKick}" class="btn btn-block btn-info btn-lg">Goals from free kick</a>
+                  <a th:href="@{/stats/getOffSides}" class="btn btn-block btn-info btn-lg">Offsides</a>
+                  <a th:href="@{/stats/getPasses}" class="btn btn-block btn-info btn-lg">Passes</a>
+                  <a th:href="@{/stats/getCrosses}" class="btn btn-block btn-info btn-lg">Crosses</a>
+                  <a th:href="@{/stats/getCornerTaken}" class="btn btn-block btn-info btn-lg">Corner taken</a>
+                  
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+            <div class="col-md-3">
+              <!-- Primary box -->
+              <div class="box box-solid box-primary">
+                <div class="box-header">
+                  <h3 class="box-title">Defence</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <a th:href="@{/stats/getInterception}" class="btn btn-block btn-info btn-lg">Interception</a>
+                  <a th:href="@{/stats/getTackles}" class="btn btn-block btn-info btn-lg">Tackles</a>
+                  <a th:href="@{/stats/getLastManTackles}" class="btn btn-block btn-info btn-lg">Last man tackles</a>
+                  <a th:href="@{/stats/getClearances}" class="btn btn-block btn-info btn-lg">Clearances</a>
+                  <a th:href="@{/stats/getHeadedClearance}" class="btn btn-block btn-info btn-lg">Headed clearance</a>
+                  <a th:href="@{/stats/getAerialBattlesWon}" class="btn btn-block btn-info btn-lg">Aerial battles won</a>
+                  <a th:href="@{/stats/getOwnGoals}" class="btn btn-block btn-info btn-lg">Own goals</a>
+                  <a th:href="@{/stats/getErrorLeadingToGoal}" class="btn btn-block btn-info btn-lg">Error leading to goal</a>
+                  <a th:href="@{/stats/getPenaltiesConceded}" class="btn btn-block btn-info btn-lg">Penalties conceded</a>
+                  <a th:href="@{/stats/getFouls}" class="btn btn-block btn-info btn-lg">Fouls</a>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+            <div class="col-md-3">
+              <!-- Primary box -->
+              <div class="box box-solid box-primary">
+                <div class="box-header">
+                  <h3 class="box-title">Goalkeeper</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <a th:href="@{/stats/getCleanSheets}" class="btn btn-block btn-info btn-lg">Clean sheets</a>
+                  <a th:href="@{/stats/getGoalsConceded}" class="btn btn-block btn-info btn-lg">Goals conceded</a>
+                  <a th:href="@{/stats/getSaves}" class="btn btn-block btn-info btn-lg">Saves</a>
+                  <a th:href="@{/stats/getPenaltiesSaved}" class="btn btn-block btn-info btn-lg">Penalties saved</a>
+                  <a th:href="@{/stats/getPunches}" class="btn btn-block btn-info btn-lg">Punches</a>
+                  <a th:href="@{/stats/getHighClains}" class="btn btn-block btn-info btn-lg">High clains</a>
+                  <a th:href="@{/stats/getSweeperCleances}" class="btn btn-block btn-info btn-lg">Sweeper cleances</a>
+                  <a th:href="@{/stats/getThrowOuts}" class="btn btn-block btn-info btn-lg">Throw outs</a>
+                  <a th:href="@{/stats/getGoalKicks}" class="btn btn-block btn-info btn-lg">Goal kicks</a>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+            
+		</section>
+	</div>
+</body>
+
+</html>

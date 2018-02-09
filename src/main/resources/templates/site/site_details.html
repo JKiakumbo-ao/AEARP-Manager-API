@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div class="modal fade" id="siteDetailModal" tabindex="-1"
+		role="dialog" th:fragment="siteModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<h3><i class="fa fa-info-circle"></i> Site details</h3>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-5">
+							<label class="control-label" > Site name:</label> <span th:text="${site.name}"></span><br/>
+
+							<label class="control-label" > Address:</label> <span th:text="${site.address}"></span><br/>
+
+							
+							
+						</div>
+						<div class="col-sm-7">
+							<label class="control-label" > Resident club name:</label> <span th:text="${site.residentClubName}"></span><br/>
+							
+							<label class="control-label" > Is gymnasium:</label> <span th:text="${site.isGymnasium}"></span><br/>
+							
+							<label class="control-label" > Map link:</label> <span th:text="${site.mapLink}"></span><br/>
+						</div>
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default pull-left"
+							data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

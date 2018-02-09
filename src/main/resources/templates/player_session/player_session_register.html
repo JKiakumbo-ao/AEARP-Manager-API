@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/patternLayout}">
+<head></head>
+
+<body class="skin-blue">
+	<div class="wrapper">
+		<section class="content" layout:fragment="content">
+		
+			<th:block th:include="fragments/MensageSuccess"></th:block>
+			
+			<form th:object="${playerSession}" method="post" th:action="${playerSession.new} ? @{/player_session/register} : @{/player_session/{id}(id=${playerSession.id})}">
+			
+				<th:block th:include="fragments/MensagesErrorValidation"></th:block>
+			
+				<div class="row">
+					<div class="col-md-12">
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<h3 th:if="${playerSession.new}" class="box-title">New Rating</h3>
+								<h3 th:unless="${playerSession.new}" class="box-title" >Edit Rating </h3>
+							</div>
+							<!-- /.box-header -->
+
+							<div class="box-body">
+								<div class="form-group col-sm-12" th:classappend="${#fields.hasErrors('player')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i>Player:</label> 
+											<select id="inputError"
+												class="form-control" th:field="*{Player}">
+												<option value="">Select rating</option>
+												<option th:each="player : ${players}" th:value="${player.id}"
+													th:text="|${player.name} ${player.surname}|"></option>
+											</select>
+										</div>
+									
+									<div class="form-group col-sm-12">
+											<h2>
+												<i class="fa fa-envelope-o"></i> Technical
+											</h2>
+										</div>
+										<!-- input states -->
+									<input type="hidden" th:field="*{id}"/>
+									<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('corners')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i>Corners:</label> 
+											<select id="inputError"
+												class="form-control" th:field="*{corners}">
+												<option value="">Select rating</option>
+												<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+										</div>
+										<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('crossing')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i> Crossing:</label> <select id="inputError"
+												class="form-control" th:field="*{crossing}">
+												<option value="">Select rating</option>
+												<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+										</div>
+										<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('dribbling')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i> Dribbling:</label> <select id="inputError"
+												class="form-control" th:field="*{dribbling}">
+												<option value="">Select rating</option>
+												<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+										</div>
+										<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('finishing')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i> Finishing:</label> <select id="inputError"
+												class="form-control" th:field="*{finishing}">
+												<option value="">Select rating</option>
+												<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+										</div>
+										<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('firstTouch')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i> First Touch:</label> <select id="inputError"
+												class="form-control" th:field="*{firstTouch}">
+												<option value="">Select rating</option>
+												<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+										</div>
+										<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('freeKickTaking')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i> Free Kick Taking:</label> <select id="inputError"
+												class="form-control" th:field="*{freeKickTaking}">
+												<option value="">Select rating</option>
+												<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+										</div>
+										<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('heading')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i> Heading:</label> <select id="inputError"
+												class="form-control" th:field="*{heading}">
+												<option value="">Select rating</option>
+												<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+										</div>
+										<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('longShots')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i> Long Shots:</label> <select id="inputError"
+												class="form-control" th:field="*{longShots}">
+												<option value="">Select rating</option>
+												<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+										</div>
+										<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('longThrows')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i> Long Throws:</label> <select id="inputError"
+												class="form-control" th:field="*{longThrows}">
+												<option value="">Select rating</option>
+												<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+										</div>
+										<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('marking')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i> Marking:</label> <select id="inputError"
+												class="form-control" th:field="*{marking}">
+												<option value="">Select rating</option>
+												<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+										</div>
+										<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('passing')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i> Passing:</label> <select id="inputError"
+												class="form-control" th:field="*{passing}">
+												<option value="">Select rating</option>
+												<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+										</div>
+										<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('penaltyTaking')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i> Penalty Taking:</label> <select id="inputError"
+												class="form-control" th:field="*{penaltyTaking}">
+												<option value="">Select rating</option>
+												<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+										</div>
+										<div class="form-group col-sm-6" th:classappend="${#fields.hasErrors('tackling')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i> Tackling:</label> <select id="inputError"
+												class="form-control" th:field="*{tackling}">
+												<option value="">Select rating</option>
+												<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+										</div>
+										<div class="form-group col-sm-6" th:classappend="${#fields.hasErrors('technique')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i> technique:</label> <select id="inputError"
+												class="form-control" th:field="*{technique}">
+												<option value="">Select rating</option>
+												<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+										</div>
+
+
+								<div class="form-group col-sm-12">
+									<h2>
+										<i class="fa fa-home"></i> Physical
+									</h2>
+								</div>
+
+								<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('acceleration')} ? has-error">
+										<label class="control-label" for="inputError"><i
+											class="fa "></i> Acceleration:</label> <select id="inputError"
+											class="form-control" th:field="*{acceleration}">
+											<option value="">Select rating</option>
+											<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+								</div>
+								<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('agility')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i> Agility:</label> <select id="inputError"
+												class="form-control" th:field="*{agility}">
+												<option value="">Select rating</option>
+												<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+										</div>
+										<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('balance')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i> Galance:</label> <select id="inputError"
+												class="form-control" th:field="*{balance}">
+												<option value="">Select rating</option>
+												<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+										</div>
+										<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('jumping')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i> Jumping:</label> <select id="inputError"
+												class="form-control" th:field="*{jumping}">
+												<option value="">Select rating</option>
+												<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+										</div>
+										<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('naturalFitness')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i> Natural Fitness:</label> <select id="inputError"
+												class="form-control" th:field="*{naturalFitness}">
+												<option value="">Select rating</option>
+												<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+										</div>
+										<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('pace')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i> Pace:</label> <select id="inputError"
+												class="form-control" th:field="*{pace}">
+												<option value="">Select rating</option>
+												<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+										</div>
+										<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('stamina')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i> Stamina:</label> <select id="inputError"
+												class="form-control" th:field="*{stamina}">
+												<option value="">Select rating</option>
+												<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+										</div>
+										<div class="form-group col-sm-3" th:classappend="${#fields.hasErrors('strength')} ? has-error">
+											<label class="control-label" for="inputError"><i
+												class="fa "></i> Strength:</label> <select id="inputError"
+												class="form-control" th:field="*{strength}">
+												<option value="">Select rating</option>
+												<option th:each="rating : ${ratings}" th:value="${rating}"
+													th:text="${rating.description}"></option>
+											</select>
+										</div>
+								
+							</div>
+							<!-- /.box-body -->
+							<div class="box-footer">
+								<div class="pull-right">
+								
+									<a th:if=${playerSession.new} th:href=@{/player_session/register} class="btn btn-default">
+										<i class="fa fa-eraser"></i> Clean
+									</a>
+									<button type="submit" class="btn btn-primary">
+											<i class="fa fa-save"></i> Save
+									</button>
+								</div>
+								<a th:href="@{/club/dashboard}" class="btn btn-default">
+									<i class="fa fa-times"></i> Close
+								</a>
+							</div>
+							<!-- /.box-footer -->
+						</div>
+						<!-- /. box -->
+					</div>
+					
+				</div>
+			</form>
+
+		</section>
+
+	</div>
+</body>
+
+</html>

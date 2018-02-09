@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div class="modal fade" id="eventDetailModal" tabindex="-1"
+		role="dialog" th:fragment="eventModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<h3><i class="fa fa-info-circle"></i> Activity information</h3>
+				</div>
+
+				<div class="modal-body">
+					<th:block th:block th:include="fragments/MensageSuccess"></th:block>
+					<form th:object="${event}" method="post" th:action=" @{/schedule/register}">
+						<th:block th:include="fragments/MensagesErrorValidation"></th:block>
+						<div class="row">
+					
+							<div class="form-group /has-success col-sm-12" th:classappend="${#fields.hasErrors('title')} ? has-error">
+						
+								<label class="control-label" for="inputSuccess">
+									<i class="fa fa-dribbble"></i>Title:</label> 
+								<input type="text" th:field="*{title}"
+										class="form-control" id="inputSuccess" placeholder="Training" />
+							</div>
+										
+							<!-- Date and time range -->
+						    <div class="form-group col-sm-12" th:classappend="${#fields.hasErrors('dateRange')} ? has-error">
+							    <label><i class="fa fa-calendar"></i>Event range:</label>
+							    <div class="input-group date " data-link-field="dtp_input1">
+							           <div class="input-group-addon">
+							               <i class="fa fa-clock-o"></i>
+							           </div>
+							           <input type="text" class="form-control pull-right" id="event_time" th:field="*{dateRange}"/>
+							   	</div><!-- /.input group -->
+						   </div><!-- /.form group -->
+										
+							<div class="form-group /has-success col-sm-12" th:classappend="${#fields.hasErrors('local')} ? has-error">
+						
+								<label class="control-label" for="inputSuccess">
+									<i class="fa fa-dribbble"></i> Local:</label> 
+								<input type="text" th:field="*{local}" class="form-control" id="inputSuccess" placeholder="JK Stadion" />
+							</div>
+										
+							<!-- Color Picker -->
+					        <div class="form-group col-sm-12">
+					            	<label>Color picker with addon:</label>
+					                 <div class="input-group my-colorpicker2">
+					                    	<input type="text" class="form-control" th:field="*{color}"/>
+					                     <div class="input-group-addon">
+					                         <i class="fa  fa-tachometer"></i>
+					                     </div>
+					                 </div><!-- /.input group -->
+					        </div><!-- /.form group -->
+					   
+					</div>
+					<div class="modal-footer">
+						<div class="pull-right">
+							<button type="submit" class="btn btn-primary">
+								<i class="fa fa-save"></i> Save
+							</button>
+							<a th:href=@{/schedule/register} class="btn btn-default">
+								<i class="fa fa-eraser"></i> Clean
+							</a>
+						</div>
+									
+						<button type="button" class="btn btn-default pull-left"
+							data-dismiss="modal">Close</button>
+					</div>
+				</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

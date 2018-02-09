@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/patternLayout'">
+<head></head>
+
+<body class="skin-blue">
+	<div class="wrapper">
+		<th:block layout:fragment="css-extra">
+			<link th:href="@{/soccer_field/soccer.css}" rel="stylesheet">
+		</th:block>
+		<section class="content" layout:fragment="content">
+			<div class="col-sm-9">
+				<div class="aw-graph-box">
+					<div class="aw-graph-box__header">
+						<h1>Attack stats <small>per player</small></h1>
+					</div>
+						<div>
+							<canvas class="css-field" id="field" onclick="showCoords(event)"></canvas>
+						    
+						</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+<div class="box box-solid box-primary">
+						                <div class="box-header">
+						                  <h3 class="box-title">ST (Striker)</h3>
+						                  <div class="box-tools pull-right">
+						                    <button class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+						                  </div>
+						                </div>
+						                <div class="box-body">
+						                  <div class="box-body no-padding">
+								                 <table id="table" class="table table-condensed">
+								                    <tr>
+								                      <th style="width: 10px">#</th>
+								                      <th>Name</th>
+								                      <th class="pull-right">Position</th>
+								                    </tr>
+								                    
+								                    
+								                  </table>
+								                </div><!-- /.box-body -->
+						                </div><!-- /.box-body -->
+						              </div><!-- /.box -->
+						              
+				  <a id ="4-3-3" class="btn btn-block btn-social btn-dropbox">
+                    <i class="fa fa-users"></i> 4 - 3 - 3
+                  </a>
+                   <a id ="3-5-2" class="btn btn-block btn-social btn-dropbox">
+                    <i class="fa fa-users"></i> 3 - 5 - 2
+                  </a>
+                   <a id ="5-4-1" class="btn btn-block btn-social btn-dropbox">
+                    <i class="fa fa-users"></i> 5 - 4 - 1
+                  </a>
+                   <a id ="4-4-2" class="btn btn-block btn-social btn-dropbox">
+                    <i class="fa fa-users"></i> 4 - 4 - 2
+                  </a>
+			</div>
+			
+		</section>
+		<th:block layout:fragment="javascript-extra">
+			 <script th:src="@{/soccer_field/vec.js}" type="text/javascript"></script>
+    		 <script th:src="@{/soccer_field/soccer.js}" type="text/javascript"></script>
+		</th:block>
+	</div>
+</body>
+
+</html>
